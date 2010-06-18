@@ -1,4 +1,4 @@
-package com.foxhole.spartan.form.radar;
+package com.foxhole.spartan.forms.radar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
-import com.foxhole.spartan.form.BasicGameForm;
-import com.foxhole.spartan.form.IGameFormObject;
+import com.foxhole.spartan.forms.BasicGameForm;
+import com.foxhole.spartan.forms.IGameFormObject;
 import com.foxhole.spartan.spaces.VirtualGameSpace;
 import com.foxhole.spartan.states.PositionalGameState;
 

@@ -26,37 +26,35 @@
  * DAMAGE.
  * ************************************************************************************/
 
-package com.foxhole.spartan.actions;
+package com.foxhole.spartan.forms;
 
-import java.util.List;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.state.StateBasedGame;
+import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 
-import com.foxhole.spartan.INonRenderableSpartanObject;
-import com.foxhole.spartan.entity.IGameEntityObject;
+import com.foxhole.spartan.managers.RenderManager;
 
-public interface IGameActionObject extends INonRenderableSpartanObject {
+public class ImageGameForm extends BasicGameForm {
+	protected Image mesh;
 	
-	public String getActionName();
+	public ImageGameForm(Image image){
+		super();
+		
+		mesh = image;
+		
+		Rectangle collisionShape = new Rectangle(0, 0, mesh.getWidth(), mesh.getHeight());
+		
+		getPosition().setCollisionShape(collisionShape);
+	}
 	
-	// Affected objects
-	public IGameEntityObject getLauncherEntity();
-	
-	public void addAffectableEntity( IGameEntityObject entity );
-	
-	public void removeAffectableEntity( IGameEntityObject entity );
-	
-	// action 	
-	public void update( GameContainer gc, StateBasedGame sbg, int delta );
-	
-	public boolean isOver();
-	
-	public boolean isPaused();
-	
-	public void pause();
-	
-	public void resume();
-
-	public void stop();
+	public void render(Graphics graphics) {
+		mesh.draw();
+		
+		renderCollisionShape(graphics);
+	}
 }
+	

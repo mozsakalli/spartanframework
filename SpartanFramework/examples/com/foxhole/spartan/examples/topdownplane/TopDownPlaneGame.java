@@ -13,7 +13,7 @@ import com.foxhole.spartan.actions.movement.RotationalMovementAction;
 import com.foxhole.spartan.entity.GameEntity;
 import com.foxhole.spartan.entity.IGameEntityObject;
 import com.foxhole.spartan.exception.SpartanException;
-import com.foxhole.spartan.form.ImageGameForm;
+import com.foxhole.spartan.forms.ImageGameForm;
 import com.foxhole.spartan.managers.ActionManager;
 import com.foxhole.spartan.managers.RenderManager;
 import com.foxhole.spartan.spaces.VirtualGameSpace;

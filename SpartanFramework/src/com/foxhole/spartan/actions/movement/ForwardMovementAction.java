@@ -37,7 +37,9 @@ public class ForwardMovementAction extends BasicGameAction {
 		if(auto || gc.getInput().isKeyDown(fowardKey)){
 			Vector2f direction = posState.getDirection();
 			
-			posState.setXY(posState.getX()+direction.getX()*delta*speed, posState.getY()+direction.getY()*delta*speed );
+			direction = direction.normalise();
+			
+			posState.setXY(posState.getX()+direction.getX() * delta*speed, posState.getY()+direction.getY() * delta*speed );
 		}
 	}
 

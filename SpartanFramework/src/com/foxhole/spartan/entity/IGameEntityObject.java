@@ -35,7 +35,7 @@ import java.util.Map;
 import com.foxhole.spartan.INonRenderableSpartanObject;
 import com.foxhole.spartan.actions.IGameActionObject;
 import com.foxhole.spartan.exception.SpartanException;
-import com.foxhole.spartan.form.IGameFormObject;
+import com.foxhole.spartan.forms.IGameFormObject;
 import com.foxhole.spartan.spaces.LogicalGameSpace;
 import com.foxhole.spartan.states.IGameStateObject;
 
@@ -79,6 +79,8 @@ public interface IGameEntityObject extends INonRenderableSpartanObject {
 	
 	// State
 	public Map<String, IGameStateObject> getStates() ;
+	
+	public IGameStateObject getState(String gameState) ;
 	
 	public void addState(IGameStateObject newState);
 	

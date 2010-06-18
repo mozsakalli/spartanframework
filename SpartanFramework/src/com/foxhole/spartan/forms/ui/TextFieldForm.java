@@ -1,4 +1,4 @@
-package com.foxhole.spartan.form.ui;
+package com.foxhole.spartan.forms.ui;
 
 import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Font;
@@ -9,7 +9,7 @@ import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.TextField;
 
-import com.foxhole.spartan.form.BasicGameForm;
+import com.foxhole.spartan.forms.BasicGameForm;
 import com.foxhole.spartan.states.PropertiesGameState;
 
 public class TextFieldForm extends BasicGameForm {

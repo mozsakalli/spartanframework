@@ -126,4 +126,8 @@ public abstract class BasicGameAction implements IGameActionObject {
 	public void resume(){
 		isPaused = false;
 	}
+	
+	public void stop(){
+		isOver = true;
+	}
 }

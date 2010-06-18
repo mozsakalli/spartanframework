@@ -10,7 +10,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
-import com.foxhole.spartan.form.IGameFormObject;
+import com.foxhole.spartan.forms.IGameFormObject;
 import com.foxhole.spartan.spaces.VirtualGameSpace;
 import com.foxhole.spartan.states.PositionalGameState;
 
@@ -21,6 +21,10 @@ public class RenderManager implements ISpartanManager {
 		return _instance;
 	}
 	*/
+	
+	public static int translationX;
+	public static int translationY;
+	
 	Map<String, VirtualGameSpace> virtualSpaces;
 	List<VirtualGameSpace> renderOrder;
 	
@@ -69,25 +73,27 @@ public class RenderManager implements ISpartanManager {
 			List<IGameFormObject> forms = space.getForms();
 			
 			for(IGameFormObject form : forms){
-				PositionalGameState posState = (PositionalGameState)form.getState(PositionalGameState.class.getCanonicalName());
 				
-				boolean pushMatrix = form.isMatrixPush();
-				if(pushMatrix){
+				if(form.useMatrixPush()){
 					GL11.glPushMatrix();
 				
+					if( form.useIdentity())
+						GL11.glLoadIdentity();
+					
+					PositionalGameState posState = (PositionalGameState)form.getState(PositionalGameState.class.getCanonicalName());
+					
 					if(posState != null){
-						GL11.glTranslatef(posState.getX()-posState.getCenterposX(), posState.getY()-posState.getCenterposY(),0);
+						GL11.glTranslatef(posState.getX(), posState.getY(),0);
 						GL11.glRotatef(posState.getRotation(), 0, 0, 1);
+						GL11.glTranslatef(-posState.getCenterposX(), -posState.getCenterposY(),0);
 						GL11.glScalef(posState.getScale(), posState.getScale(), 1);
-						
 					}
 				}
 				
 				form.render(graphics);
 				
-				if(pushMatrix){
+				if(form.useMatrixPush())
 					GL11.glPopMatrix();
-				}
 			}
 		}
 	}

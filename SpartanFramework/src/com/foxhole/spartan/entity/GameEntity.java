@@ -37,8 +37,9 @@ import java.util.Map;
 import com.foxhole.spartan.actions.BasicGameAction;
 import com.foxhole.spartan.actions.IGameActionObject;
 import com.foxhole.spartan.exception.SpartanException;
-import com.foxhole.spartan.form.IGameFormObject;
+import com.foxhole.spartan.forms.IGameFormObject;
 import com.foxhole.spartan.managers.ActionManager;
+import com.foxhole.spartan.managers.EntityManager;
 import com.foxhole.spartan.managers.IdentifierManager;
 import com.foxhole.spartan.spaces.LogicalGameSpace;
 import com.foxhole.spartan.states.IGameStateObject;
@@ -81,6 +82,8 @@ public class GameEntity implements IGameEntityObject {
 		state.addString("name", name);
 		
 		this.addState(state);
+		
+		EntityManager.getInstance().addEntity(name, this);
 	}
 	
 	//@Override
@@ -112,7 +115,8 @@ public class GameEntity implements IGameEntityObject {
 	//@Override
 	public void setForm(IGameFormObject newForm) {
 		this.form = newForm;
-		newForm.setEntity(this);
+		if(newForm != null)
+			newForm.setEntity(this);
 	}
 
 	//@Override
@@ -181,5 +185,11 @@ public class GameEntity implements IGameEntityObject {
 	public final void addAction(String actionName, IGameActionObject action) {
 		if(action != null && actionName != null)
 			actionMap.put(actionName, action);
+	}
+
+	@Override
+	public IGameStateObject getState(String gameState) {
+		
+		return getStates().get(gameState);
 	}
 }

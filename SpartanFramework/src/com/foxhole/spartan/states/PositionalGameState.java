@@ -29,10 +29,12 @@
 package com.foxhole.spartan.states;
 
 import org.newdawn.slick.geom.Shape;
+import org.newdawn.slick.geom.Transform;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.FastTrig;
 
-import com.foxhole.spartan.form.IFormPosition;
+import com.foxhole.spartan.forms.IFormPosition;
+import com.foxhole.spartan.managers.RenderManager;
 
 public class PositionalGameState extends AbstractGameState implements IFormPosition {
 
@@ -47,24 +49,36 @@ public class PositionalGameState extends AbstractGameState implements IFormPosit
 	
 	private Vector2f direction;
 	float differenceAngle;
-	Shape area;
+	Shape collisionArea;
+	boolean dirty;
 	
+	public PositionalGameState(){
+		this(PositionalGameState.class.getCanonicalName());
+		dirty = true;
+	}
 	public PositionalGameState(String id){
 		super(id);
 		
 		direction = new Vector2f();
 		
 		setDirection(0, 0);
+		dirty = true;
 	}
 	
 	public PositionalGameState(String id, float xDirection, float yDirection){
 		super(id);
 		
 		direction = new Vector2f(xDirection,yDirection);
+		dirty = true;
 	}
 	
 	public final Vector2f getDirection(){
 		return direction;
+	}
+	
+	public final void setDirection(float angle){
+		differenceAngle = angle;
+		dirty = true;
 	}
 	
 	public final void setDirection(float xDirection, float yDirection){
@@ -78,12 +92,14 @@ public class PositionalGameState extends AbstractGameState implements IFormPosit
 					xDirection / java.lang.Math.sqrt( (double)(xDirection * xDirection + yDirection * yDirection) )) - rotation );
 			
 		}
-		System.out.println("difference angle: " + differenceAngle);
+		//System.out.println("difference angle: " + differenceAngle);
 		//updateDirection();
+		dirty = true;
 	}
 	
 	public final void setXY(float x, float y){
-		xPos = x; yPos = y;
+		setX(x);
+		setY(y);
 	}
 	
 	public final float getX(){
@@ -96,10 +112,12 @@ public class PositionalGameState extends AbstractGameState implements IFormPosit
 	
 	public final void setX(float x){
 		xPos = x;
+		dirty = true;
 	}
 	
 	public final void setY(float y){
 		yPos = y;
+		dirty = true;
 	}
 	
 	public final float getRotation(){
@@ -124,6 +142,7 @@ public class PositionalGameState extends AbstractGameState implements IFormPosit
 		
 		direction.set( (float)FastTrig.cos( java.lang.Math.toRadians( rotation - differenceAngle) ), 
 					   (float)FastTrig.sin( java.lang.Math.toRadians( rotation - differenceAngle) ) );
+		
 	}
 	
 	public final float getScale(){
@@ -132,15 +151,18 @@ public class PositionalGameState extends AbstractGameState implements IFormPosit
 	
 	public final void setScale(float scale){
 		this.scale = scale;
+		dirty = true;
 	}
 
 	public final void addScale(float scale){
 		this.scale += scale;
+		dirty = true;
 	}
 	
 	public final void setCenterPosition(float x, float y){
 		xCenterPos = x;
 		yCenterPos = y;
+		dirty = true;
 	}
 	
 	public final float getCenterposX(){
@@ -155,11 +177,24 @@ public class PositionalGameState extends AbstractGameState implements IFormPosit
 		return differenceAngle;
 	}
 
-	public Shape getArea() {
-		return area;
+	@Override
+	public Shape getCollisionShape() {
+		if(collisionArea != null){
+			updateCollisionArea();
+		}
+		return collisionArea;
 	}
 	
-	public void setArea(Shape area) {
-		this.area = area;
+	public void setCollisionShape(Shape shape) {
+		collisionArea = shape;
+		updateCollisionArea();
+	}
+	
+	private final void updateCollisionArea() {
+		if(collisionArea != null){
+			collisionArea.setLocation(getX()-getCenterposX(), getY()-getCenterposY());
+			//dirty = false;
+		}
+		
 	}
 }

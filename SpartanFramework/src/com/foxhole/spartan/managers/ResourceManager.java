@@ -13,6 +13,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
+import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.loading.LoadingList;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -26,11 +27,13 @@ import com.foxhole.spartan.states.PropertiesGameState;
 
 public class ResourceManager implements ISpartanManager {
 
+	private static String SPRITE_SHEET_REF = "__SPRITE_SHEET_";
+	
 	private static ResourceManager _instance = new ResourceManager();
 	
 	private Map<String, Sound> soundMap;
 	private Map<String, Image> imageMap;
-	private Map<String, Animation> animationMap;
+	private Map<String, ResourceAnimationData> animationMap;
 	private Map<String, String> textMap;
 	
 	private PropertiesGameState deferredState;
@@ -38,7 +41,7 @@ public class ResourceManager implements ISpartanManager {
 	private ResourceManager(){
 		soundMap 	 = new HashMap<String, Sound>();
 		imageMap 	 = new HashMap<String, Image>();
-		animationMap = new HashMap<String, Animation>();
+		animationMap = new HashMap<String, ResourceAnimationData>();
 		textMap 	 = new HashMap<String, String>();
 	}
 	
@@ -51,9 +54,6 @@ public class ResourceManager implements ISpartanManager {
 	}
 	
 	public void loadResources(InputStream is, boolean deferred) throws SpartanException {
-		
-		IGameActionObject result = null;
-		
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = null;
 		try {
@@ -79,8 +79,6 @@ public class ResourceManager implements ISpartanManager {
         
         if(deferred){
         	LoadingList.setDeferredLoading(true);
-        	
-        	//result = new ResourceLoadingGameAction("RESOURCE_LOADER", null);
         }
         	
         
@@ -102,13 +100,40 @@ public class ResourceManager implements ISpartanManager {
         		}else if(type.equals("font")){
         			
         		}else if(type.equals("animation")){
-        			
+        			addElementAsAnimation(resourceElement);
         		}
         	}
         }
 
 	}
 	
+	private void addElementAsAnimation(Element resourceElement) throws SpartanException{
+		loadAnimation(resourceElement.getAttribute("id"), resourceElement.getTextContent(), 
+				Integer.valueOf(resourceElement.getAttribute("tw")),
+				Integer.valueOf(resourceElement.getAttribute("th")),
+				Integer.valueOf(resourceElement.getAttribute("duration")));
+	}
+
+	private void loadAnimation(String id, String spriteSheetPath,
+			int tw, int th, int duration) throws SpartanException{
+		if(spriteSheetPath == null || spriteSheetPath.length() == 0)
+			throw new SpartanException("Image resource [" + id + "] has invalid path");
+		
+		loadImage( SPRITE_SHEET_REF + id, spriteSheetPath);
+		
+		animationMap.put(id, new ResourceAnimationData(SPRITE_SHEET_REF+id, tw, th, duration));
+	}
+	
+	public final Animation getAnimation(String ID){
+		ResourceAnimationData rad = animationMap.get(ID);
+		
+		SpriteSheet spr = new SpriteSheet(getImage(rad.getImageId()), rad.tw, rad.th);
+		
+		Animation animation = new Animation(spr, rad.duration);
+		
+		return animation;
+	}
+
 	private void addElementAsText(Element resourceElement) throws SpartanException{
 		loadText(resourceElement.getAttribute("id"), resourceElement.getTextContent());
 	}
@@ -120,6 +145,10 @@ public class ResourceManager implements ISpartanManager {
 		textMap.put(id, value);
 		
 		return value;
+	}
+	
+	public String getText(String ID) {
+		return textMap.get(ID);
 	}
 	
 	private void addElementAsSound(Element resourceElement) throws SpartanException {
@@ -142,6 +171,11 @@ public class ResourceManager implements ISpartanManager {
 		
 		return sound;
 	}
+	
+	public final Sound getSound(String ID){
+		return soundMap.get(ID);
+	}
+	
 
 	private final void addElementAsImage(Element resourceElement) throws SpartanException {
 		loadImage(resourceElement.getAttribute("id"), resourceElement.getTextContent());
@@ -163,20 +197,55 @@ public class ResourceManager implements ISpartanManager {
 		return image;
 	}
 
-	public final Sound getSound(String ID){
-		return soundMap.get(ID);
-	}
-	
 	public final Image getImage(String ID){
 		return imageMap.get(ID);
 	}
 	
-	public final Animation getAnimation(String ID){
-		return animationMap.get(ID);
-	}
-
-	public String getText(String ID) {
-		return textMap.get(ID);
-	}
 	
+
+	
+	
+
+
+	
+	
+	private class ResourceAnimationData{
+		int duration;
+		int tw;
+		int th;
+		String imageId;
+		
+		public ResourceAnimationData(String id, int tw, int th, int duration){
+			this.imageId = id;
+			this.tw = tw;
+			this.th = th;
+			this.duration = duration;
+		}
+		
+		public final int getDuration() {
+			return duration;
+		}
+		public final void setDuration(int duration) {
+			this.duration = duration;
+		}
+		public final int getTw() {
+			return tw;
+		}
+		public final void setTw(int tw) {
+			this.tw = tw;
+		}
+		public final int getTh() {
+			return th;
+		}
+		public final void setTh(int th) {
+			this.th = th;
+		}
+		public final String getImageId() {
+			return imageId;
+		}
+		public final void setImageId(String imageId) {
+			this.imageId = imageId;
+		}
+		
+	}
 }

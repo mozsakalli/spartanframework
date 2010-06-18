@@ -6,9 +6,11 @@ import org.newdawn.slick.state.StateBasedGame;
 import com.foxhole.spartan.actions.BasicGameAction;
 import com.foxhole.spartan.entity.IGameEntityObject;
 import com.foxhole.spartan.exception.SpartanException;
-import com.foxhole.spartan.form.IGameFormObject;
+import com.foxhole.spartan.forms.IGameFormObject;
+import com.foxhole.spartan.managers.RenderManager;
 import com.foxhole.spartan.spaces.VirtualGameSpace;
 import com.foxhole.spartan.states.PositionalGameState;
+import com.foxhole.spartan.states.PropertiesGameState;
 
 public class TopDownCameraAction extends BasicGameAction {
 
@@ -47,6 +49,15 @@ public class TopDownCameraAction extends BasicGameAction {
 		initialX = initialX > halfWidth ? initialX : halfWidth;
 		initialY = initialY > halfHeight ? initialY : halfHeight;
 	}
+	
+	public void setTargetEntity(IGameEntityObject targetEntity){
+		targetEntities.clear();
+		
+		targetEntities.add(targetEntity);
+		
+		initialX = initialX > halfWidth ? initialX : halfWidth;
+		initialY = initialY > halfHeight ? initialY : halfHeight;
+	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
 		float xTranslaction = 0;
@@ -54,6 +65,10 @@ public class TopDownCameraAction extends BasicGameAction {
 		
 		PositionalGameState targetPosState = null;
 		IGameEntityObject currentTarget = this.targetEntities.get(0);
+		float finalX = 0;
+		float finalY = 0;
+		if(currentTarget != null){
+			
 		while(currentTarget != null){
 			targetPosState = (PositionalGameState) currentTarget.getForm().getState(PositionalGameState.class.getCanonicalName());
 			
@@ -68,7 +83,7 @@ public class TopDownCameraAction extends BasicGameAction {
 		targetPosState = (PositionalGameState) currentTarget.getForm().getState(PositionalGameState.class.getCanonicalName());
 		//System.out.println("targetPos to (" + targetPosState.getX() + ", " + targetPosState.getY()+")");
 		
-		float finalX = 0;
+		
 		if(xTranslaction < (minX+halfWidth))
 			finalX = minX+halfWidth;
 		else if(xTranslaction > (maxX-halfWidth) )
@@ -76,7 +91,7 @@ public class TopDownCameraAction extends BasicGameAction {
 		else
 			finalX = xTranslaction;
 		
-		float finalY = 0;
+		
 		if(yTranslaction < (minY+halfHeight))
 			finalY = minY+gc.getHeight()/2;
 		else if(yTranslaction > (maxY-halfHeight) )
@@ -84,15 +99,25 @@ public class TopDownCameraAction extends BasicGameAction {
 		else
 			finalY = yTranslaction;
 		
-		cameraPosState.setXY( halfWidth-finalX, halfHeight-finalY);
 		
+	}else{
+		finalX = initialX;
+		finalY = initialY;
+	}
+		PropertiesGameState ps = (PropertiesGameState)userEntity.getForm().getState(PropertiesGameState.class.getCanonicalName());
+		ps.setInt("CAMERA_X", (int) (halfWidth-finalX));
+		ps.setInt("CAMERA_Y", (int) (halfHeight-finalY));	
+		
+		//System.out.println("camera to : " + xTranslaction + "," + yTranslaction);
+		
+		/*
 		VirtualGameSpace virtualSpace = userEntity.getForm().getVirtualSpace();
 		for(IGameFormObject form : virtualSpace.getForms()){
 			PositionalGameState posState = (PositionalGameState)form.getState(PositionalGameState.class.getCanonicalName());
 			
 			//System.out.println("Radar at: " + cameraPosState.getX() + ", " + cameraPosState.getY());
 			posState.setXY(850 - cameraPosState.getX(), 600 - cameraPosState.getY());
-		}
+		}*/
 		
 	}
 

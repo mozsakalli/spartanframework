@@ -6,7 +6,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import com.foxhole.spartan.actions.BasicGameAction;
 import com.foxhole.spartan.entity.IGameEntityObject;
 import com.foxhole.spartan.exception.SpartanException;
-import com.foxhole.spartan.form.IGameFormObject;
+import com.foxhole.spartan.forms.IGameFormObject;
 import com.foxhole.spartan.states.PositionalGameState;
 
 public class AreaContainmentAction extends BasicGameAction {

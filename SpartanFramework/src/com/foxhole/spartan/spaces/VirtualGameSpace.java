@@ -33,7 +33,7 @@ import java.util.List;
 
 import com.foxhole.spartan.ISpartanObject;
 import com.foxhole.spartan.entity.IGameEntityObject;
-import com.foxhole.spartan.form.IGameFormObject;
+import com.foxhole.spartan.forms.IGameFormObject;
 
 
 public class VirtualGameSpace implements IGameSpaceObject {
@@ -65,9 +65,9 @@ public class VirtualGameSpace implements IGameSpaceObject {
 		}
 	}
 
-	public void removeForm(IGameEntityObject entity){
-		if ( entity.getForm() != null){
-			formList.remove(entity.getForm());
+	public void removeForm(IGameFormObject form){
+		if ( form != null){
+			formList.remove(form);
 		}
 	}
 	

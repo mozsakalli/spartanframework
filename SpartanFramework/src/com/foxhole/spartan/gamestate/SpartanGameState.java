@@ -29,5 +29,12 @@ public abstract class SpartanGameState extends org.newdawn.slick.state.BasicGame
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
 		renderManager.render(gc, sbg, graphics);
+		
+		try {
+			Thread.sleep(10);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

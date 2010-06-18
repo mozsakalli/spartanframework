@@ -42,7 +42,7 @@ public class TTLForwardMovementAction extends BasicGameAction {
 		
 		if(counter > ttl){
 			isOver = true;
-			gameSpace.removeForm(userEntity);
+			gameSpace.removeForm(userEntity.getForm());
 		}
 	}
 
