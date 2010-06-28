@@ -14,7 +14,7 @@ import com.foxhole.spartan.states.PropertiesGameState;
 
 public class TopDownCameraAction extends BasicGameAction {
 
-	PositionalGameState cameraPosState = null;
+	//PositionalGameState cameraPosState = null;
 	
 	float initialX;
 	float initialY;
@@ -28,11 +28,14 @@ public class TopDownCameraAction extends BasicGameAction {
 	float halfWidth;
 	float halfHeight;
 	
-	public TopDownCameraAction(String name, IGameEntityObject cameraEntity, IGameEntityObject targetEntity, float initialX, float initialY, float minX, float minY, float maxX, float maxY, float width, float height)
+	RenderManager rm;
+	
+	public TopDownCameraAction(String name, IGameEntityObject targetEntity, float initialX, float initialY, float minX, float minY, float maxX, float maxY, float width, float height, RenderManager rm)
 			throws SpartanException {
-		super(name, cameraEntity, targetEntity);
+		super(name, targetEntity);
 		
-		cameraPosState = (PositionalGameState) userEntity.getForm().getState(PositionalGameState.class.getCanonicalName());
+		this.rm = rm;
+		//cameraPosState = (PositionalGameState) userEntity.getForm().getState(PositionalGameState.class.getCanonicalName());
 		
 		this.initialX = initialX;
 		this.initialY = initialY;
@@ -53,7 +56,7 @@ public class TopDownCameraAction extends BasicGameAction {
 	public void setTargetEntity(IGameEntityObject targetEntity){
 		targetEntities.clear();
 		
-		targetEntities.add(targetEntity);
+		userEntity = targetEntity;
 		
 		initialX = initialX > halfWidth ? initialX : halfWidth;
 		initialY = initialY > halfHeight ? initialY : halfHeight;
@@ -64,7 +67,7 @@ public class TopDownCameraAction extends BasicGameAction {
 		float yTranslaction = 0;
 		
 		PositionalGameState targetPosState = null;
-		IGameEntityObject currentTarget = this.targetEntities.get(0);
+		IGameEntityObject currentTarget = userEntity;
 		float finalX = 0;
 		float finalY = 0;
 		if(currentTarget != null){
@@ -79,8 +82,8 @@ public class TopDownCameraAction extends BasicGameAction {
 		}
 		
 		//System.out.println("Setting new cameraPos to (" + xTranslaction + ", " + yTranslaction+")");
-		currentTarget = this.targetEntities.get(0);
-		targetPosState = (PositionalGameState) currentTarget.getForm().getState(PositionalGameState.class.getCanonicalName());
+		//currentTarget = this.targetEntities.get(0);
+		//targetPosState = (PositionalGameState) currentTarget.getForm().getState(PositionalGameState.class.getCanonicalName());
 		//System.out.println("targetPos to (" + targetPosState.getX() + ", " + targetPosState.getY()+")");
 		
 		
@@ -104,10 +107,11 @@ public class TopDownCameraAction extends BasicGameAction {
 		finalX = initialX;
 		finalY = initialY;
 	}
-		PropertiesGameState ps = (PropertiesGameState)userEntity.getForm().getState(PropertiesGameState.class.getCanonicalName());
-		ps.setInt("CAMERA_X", (int) (halfWidth-finalX));
-		ps.setInt("CAMERA_Y", (int) (halfHeight-finalY));	
+		//PropertiesGameState ps = (PropertiesGameState)userEntity.getForm().getState(PropertiesGameState.class.getCanonicalName());
+		//ps.setInt("CAMERA_X", (int) (halfWidth-finalX));
+		//ps.setInt("CAMERA_Y", (int) (halfHeight-finalY));	
 		
+		rm.translate((halfWidth-finalX), (halfHeight-finalY));
 		//System.out.println("camera to : " + xTranslaction + "," + yTranslaction);
 		
 		/*

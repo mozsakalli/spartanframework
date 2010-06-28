@@ -192,6 +192,7 @@ public class PositionalGameState extends AbstractGameState implements IFormPosit
 	
 	private final void updateCollisionArea() {
 		if(collisionArea != null){
+			//collisionArea = collisionArea.transform(Transform.createScaleTransform(scale, scale));
 			collisionArea.setLocation(getX()-getCenterposX(), getY()-getCenterposY());
 			//dirty = false;
 		}

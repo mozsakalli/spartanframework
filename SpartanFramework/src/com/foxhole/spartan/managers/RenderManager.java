@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.state.StateBasedGame;
 
 import com.foxhole.spartan.forms.IGameFormObject;
@@ -15,15 +17,11 @@ import com.foxhole.spartan.spaces.VirtualGameSpace;
 import com.foxhole.spartan.states.PositionalGameState;
 
 public class RenderManager implements ISpartanManager {
-	//private static RenderManager _instance = new RenderManager();
-	/*
-	public static RenderManager getInstance(){
-		return _instance;
-	}
-	*/
 	
-	public static int translationX;
-	public static int translationY;
+	public float translationX;
+	public float translationY;
+	
+	boolean inDebugMode;
 	
 	Map<String, VirtualGameSpace> virtualSpaces;
 	List<VirtualGameSpace> renderOrder;
@@ -31,6 +29,8 @@ public class RenderManager implements ISpartanManager {
 	public RenderManager(){
 		virtualSpaces = new HashMap<String, VirtualGameSpace>();
 		renderOrder = new ArrayList<VirtualGameSpace>();
+		
+		inDebugMode = true;
 	}
 	
 	public void reset(){
@@ -69,6 +69,8 @@ public class RenderManager implements ISpartanManager {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics){
 		GL11.glLoadIdentity();
 		
+		GL11.glTranslatef(translationX, translationY, 0);
+		
 		for(VirtualGameSpace space : renderOrder){
 			List<IGameFormObject> forms = space.getForms();
 			
@@ -96,5 +98,58 @@ public class RenderManager implements ISpartanManager {
 					GL11.glPopMatrix();
 			}
 		}
+		
+		if(inDebugMode){
+			
+			drawDebugInfo(gc, sbg, graphics);
+			
+			for(VirtualGameSpace space : renderOrder){
+				List<IGameFormObject> forms = space.getForms();
+				
+				for(IGameFormObject form : forms){
+					Shape s = form.getPosition().getCollisionShape();
+					if(s != null){
+						if(form.useMatrixPush()){
+							GL11.glPushMatrix();
+						
+							if( form.useIdentity())
+								GL11.glLoadIdentity();
+						}
+						
+						graphics.setColor(Color.green);
+						graphics.draw(s);
+						
+						if(form.useMatrixPush())
+							GL11.glPopMatrix();
+					}
+				}
+			}
+		}
+	}
+
+	private void drawDebugInfo(GameContainer gc, StateBasedGame sbg,
+			Graphics graphics) {
+		
+		graphics.drawString("Spartan FPS:" + gc.getFPS(), -translationX + 10, -translationY + 10);
+		
+		int count = 0;
+		
+		for(VirtualGameSpace space : renderOrder){
+			count += space.getForms().size();
+		}
+		
+		graphics.drawString("Forms: " + count , - translationX + 10, -translationY + 30);
+		
+	}
+
+	public void removeForm(IGameFormObject form) {
+		for(VirtualGameSpace space : renderOrder){
+			space.removeForm(form);
+		}
+	}
+	
+	public void translate(float translationX, float translationY){
+		this.translationX = translationX;
+		this.translationY = translationY;
 	}
 }

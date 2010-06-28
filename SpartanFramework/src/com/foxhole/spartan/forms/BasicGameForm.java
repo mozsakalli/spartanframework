@@ -160,6 +160,7 @@ public abstract class BasicGameForm implements IGameFormObject {
 			   collisionShape.intersects(otherCollisionShape);
 	}
 	
+	/*
 	public final void renderCollisionShape(Graphics graphics){
 		GL11.glPushMatrix();
 		
@@ -171,5 +172,5 @@ public abstract class BasicGameForm implements IGameFormObject {
 		graphics.draw(s);
 		
 		GL11.glPopMatrix();
-	}
+	}*/
 }

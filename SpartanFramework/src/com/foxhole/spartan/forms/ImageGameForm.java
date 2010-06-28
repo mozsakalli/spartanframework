@@ -54,7 +54,7 @@ public class ImageGameForm extends BasicGameForm {
 	public void render(Graphics graphics) {
 		mesh.draw();
 		
-		renderCollisionShape(graphics);
+		//renderCollisionShape(graphics);
 	}
 }
 	

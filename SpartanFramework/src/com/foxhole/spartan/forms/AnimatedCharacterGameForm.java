@@ -20,7 +20,7 @@ public class AnimatedCharacterGameForm extends BasicGameForm {
 	
 	Map<String, Animation> animations;
 	
-	Map<String, Image> images;
+	Map<String, ImageData> images;
 	
 	BasicGameForm currentGameForm;
 	
@@ -31,7 +31,7 @@ public class AnimatedCharacterGameForm extends BasicGameForm {
 		super();
 		
 		animations = new HashMap<String, Animation>();
-		images = new HashMap<String, Image>();
+		images = new HashMap<String, ImageData>();
 	}
 	
 	public void render(Graphics graphics) {
@@ -42,15 +42,19 @@ public class AnimatedCharacterGameForm extends BasicGameForm {
 			currentAnimation.draw();
 		}
 		
-		renderCollisionShape(graphics);
+		//renderCollisionShape(graphics);
 	}
 
 	public void addAnimation(String animationName, Animation animation){
 		animations.put(animationName, animation);
 	}
 	
-	public void addImage(String imageName, Image image){
-		images.put(imageName, image);
+	public final void addImage(String imageName, Image image){
+		addImage(imageName, image, 0, 0);
+	}
+	
+	public final void addImage(String imageName, Image image, int centerPosX, int centerPosY){
+		images.put(imageName, new ImageData(image, centerPosX, centerPosY));
 	}
 	
 	public void setAnimation(String animation){
@@ -68,11 +72,18 @@ public class AnimatedCharacterGameForm extends BasicGameForm {
 	}
 
 	public void setImage(String image){
-		currentImage = images.get(image);
 		
-		setBoundingShape(currentImage.getWidth(), currentImage.getHeight());
+		ImageData data = images.get(image);
 		
-		currentAnimation = null; 
+		if(data != null){
+			currentImage = data.image;
+			
+			setBoundingShape(currentImage.getWidth(), currentImage.getHeight());
+			
+			getPosition().setCenterPosition(data.getCenterPosX(), data.getCenterPosY());
+			
+			currentAnimation = null;
+		}
 	}
 	
 	protected void updateBoundingShape(){
@@ -83,5 +94,27 @@ public class AnimatedCharacterGameForm extends BasicGameForm {
 		return currentIdName;
 	}
 	
-	
+	private class ImageData{
+		Image image;
+		int centerPosX;
+		int centerPosY;
+		
+		public ImageData(Image image, int centerPosX, int centerPosY){
+			this.image = image;
+			this.centerPosX = centerPosX;
+			this.centerPosY = centerPosY;
+		}
+		
+		public final Image getImage() {
+			return image;
+		}
+		
+		public final int getCenterPosX() {
+			return centerPosX;
+		}
+		
+		public final int getCenterPosY() {
+			return centerPosY;
+		}
+	}
 }

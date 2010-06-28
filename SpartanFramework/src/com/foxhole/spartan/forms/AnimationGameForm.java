@@ -2,6 +2,7 @@ package com.foxhole.spartan.forms;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.geom.Rectangle;
 
 public class AnimationGameForm extends BasicGameForm {
 
@@ -9,6 +10,10 @@ public class AnimationGameForm extends BasicGameForm {
 	
 	public AnimationGameForm(Animation animation){
 		this(animation, true, true);
+		
+		Rectangle collisionShape = new Rectangle(0, 0, animation.getWidth(), animation.getHeight());
+		
+		getPosition().setCollisionShape(collisionShape);
 	}
 	
 	public AnimationGameForm(Animation animation, boolean autoUpdate, boolean looping){
