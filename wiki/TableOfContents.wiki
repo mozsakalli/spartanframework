@@ -13,8 +13,9 @@
   * Basic Managers
     * Render Manager
     * Action Manager
-  * Tutorial 1 : Making a simple game
   * Advanced Managers
     * Collision Manager
     * Entity Manager
-  * Tutorial 2 : Making a top down shooter
+  * Tutorials
+    * Tutorial 1 : Making a simple game
+    * Tutorial 2 : Making a top down shooter
