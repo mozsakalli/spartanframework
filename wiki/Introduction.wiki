@@ -1,5 +1,9 @@
 #summary Introduction to the Spartan Framework.
 
+<img src="http://lh6.ggpht.com/_01HmjNu9VF8/TC9uuRWJQvI/AAAAAAAAAFk/jhNNg6uOwfE/s800/spartan.jpg" />
+
+THIS IS SPARTAn framework!!!
+
 = Introduction =
 
 <Add your content here.>
