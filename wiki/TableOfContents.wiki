@@ -4,13 +4,14 @@
 
   * [http://code.google.com/p/spartanframework/wiki/Introduction Introduction]
   * [http://code.google.com/p/spartanframework/wiki/EntityBasedSystems Entity Based Systems]
+    * [http://code.google.com/p/spartanframework/wiki/GameSpaces Game Spaces]
     * [http://code.google.com/p/spartanframework/wiki/States States]
       * Spartan States
     * [http://code.google.com/p/spartanframework/wiki/Forms Forms]
       * Spartan Forms
-    * Actions
+    * [http://code.google.com/p/spartanframework/wiki/Actions Actions]
       * Spartan Actions
-    * Game Spaces
+    
   * Basic Managers
     * Render Manager
     * Action Manager
