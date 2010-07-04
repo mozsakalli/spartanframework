@@ -4,7 +4,7 @@
 
   * [http://code.google.com/p/spartanframework/wiki/Introduction Introduction]
   * [http://code.google.com/p/spartanframework/wiki/EntityBasedSystems Entity Based Systems]
-    * States
+    * [http://code.google.com/p/spartanframework/wiki/States States
       * Spartan States
     * Forms
       * Spartan Forms
