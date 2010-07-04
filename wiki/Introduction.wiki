@@ -33,4 +33,8 @@ Yes, actually I only use spartan, I've made several small games and even used it
 
 ==Is this any good?==
 
-I think that every system is only as good as what we do with it, so if no-one uses this, than no... if for some reason it picks up and helps generate thousands of new games than yeah it's great. 
+I think that every system is only as good as what we do with it, so if no-one uses this, than no... if for some reason it picks up and helps generate thousands of new games than yeah it's great.
+
+== "Object-Oriented Game Design" by Britt L. Hannah ==
+
+For a deeper understanding of Spartan, please check [http://www.devmaster.net/articles/oo-game-design oo-game-design].
