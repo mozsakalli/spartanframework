@@ -17,7 +17,3 @@ Since the explanation is a bit vague it's probably better to just explain all th
 *The Game State Object:* This object is used to track the data of an entity or its form. State objects can also modify the way an action functions. State objects of an Entity object represent data that is not relevant to most game mechanics, such as a name, while State objects of the Form object are typically used exclusively for game mechanics.
 
 *The Game Space Object:* These are simply collections (or sets) of the other objects in the system. The reasons why one would want collections of the various other game objects is diverse and the objects are generally sorted into collections for optimization purposes, which includes rendering, and A.I. updates. Conceptually, this object represents the world of the game, and it is where the effects of the all actions are applied.
-
-== "Object-Oriented Game Design" by Britt L. Hannah ==
-
-For a deeper understanding of Spartan, please check [http://www.devmaster.net/articles/oo-game-design oo-game-design]
