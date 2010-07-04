@@ -24,10 +24,10 @@ Well first of all it makes more sense to use entities, its just a concept so wit
 Yes, actually I only use spartan, I've made several small games and even used it in a small client/server boutique MMO I'm making. Here's some tech demos in which I used Spartan.
 
 *Splash lake clone*
-<wiki:video url="http://www.youtube.com/foxholestudios#p/a/u/1/Oxn2bopAtvM"/>
+<wiki:video url="http://www.youtube.com/watch?v=Oxn2bopAtvM"/>
 
 *Smash TV look a (lots) like*
-<wiki:video url="http://www.youtube.com/foxholestudios#p/a/u/0/zlcuHUE5X_U"/>
+<wiki:video url="http://www.youtube.com/watch?v=zlcuHUE5X_U"/>
 
 ==Is this any good?==
 
