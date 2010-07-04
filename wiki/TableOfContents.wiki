@@ -2,7 +2,7 @@
 
 = Table of contents =
 
-  * Introduction
+  * [http://code.google.com/p/spartanframework/wiki/Introduction Introduction]
   * Entity Based Systems
     * States
       * Spartan States
