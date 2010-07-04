@@ -11,7 +11,7 @@
       * Spartan Forms
     * [http://code.google.com/p/spartanframework/wiki/Actions Actions]
       * Spartan Actions
-    
+    * [http://code.google.com/p/spartanframework/wiki/Entity Game Entity]
   * Basic Managers
     * Render Manager
     * Action Manager
