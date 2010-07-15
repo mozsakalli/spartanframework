@@ -50,6 +50,7 @@ public class PositionalGameState extends AbstractGameState implements IFormPosit
 	private Vector2f direction;
 	float differenceAngle;
 	Shape collisionArea;
+	Shape updatedCollisionArea;
 	boolean dirty;
 	
 	public PositionalGameState(){
@@ -127,6 +128,7 @@ public class PositionalGameState extends AbstractGameState implements IFormPosit
 	public final void setRotation(float rotation){
 		this.rotation = rotation;
 		this.rotation %= 360;
+		
 		updateDirection();
 	}
 	
@@ -142,7 +144,7 @@ public class PositionalGameState extends AbstractGameState implements IFormPosit
 		
 		direction.set( (float)FastTrig.cos( java.lang.Math.toRadians( rotation - differenceAngle) ), 
 					   (float)FastTrig.sin( java.lang.Math.toRadians( rotation - differenceAngle) ) );
-		
+		dirty = true;
 	}
 	
 	public final float getScale(){
@@ -179,10 +181,10 @@ public class PositionalGameState extends AbstractGameState implements IFormPosit
 
 	@Override
 	public Shape getCollisionShape() {
-		if(collisionArea != null){
+		if(collisionArea != null && dirty){
 			updateCollisionArea();
 		}
-		return collisionArea;
+		return updatedCollisionArea;
 	}
 	
 	public void setCollisionShape(Shape shape) {
@@ -192,9 +194,14 @@ public class PositionalGameState extends AbstractGameState implements IFormPosit
 	
 	private final void updateCollisionArea() {
 		if(collisionArea != null){
-			//collisionArea = collisionArea.transform(Transform.createScaleTransform(scale, scale));
-			collisionArea.setLocation(getX()-getCenterposX(), getY()-getCenterposY());
-			//dirty = false;
+			updatedCollisionArea = collisionArea.transform(Transform.createScaleTransform(scale, scale));
+			updatedCollisionArea = updatedCollisionArea.transform(Transform.createTranslateTransform(-getCenterposX(), -getCenterposY()));
+			updatedCollisionArea = updatedCollisionArea.transform(Transform.createRotateTransform((float) Math.toRadians(getRotation())));
+			updatedCollisionArea = updatedCollisionArea.transform(Transform.createTranslateTransform(getX(), getY()));
+			//collisionArea.setLocation(getX()-getCenterposX(), getY()-getCenterposY());
+			
+			
+			dirty = false;
 		}
 		
 	}
