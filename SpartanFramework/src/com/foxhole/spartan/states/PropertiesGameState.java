@@ -47,26 +47,34 @@ public class PropertiesGameState extends AbstractGameState {
 		return values.get(key);
 	}
 	
-	public void addString(String key, String value){
+	public final void addString(String key, String value){
 		if(key != null && value != null)
 			values.put(key, value);
 	}
 	
-	public void setInt(String key, int value){
+	public final void setFloat(String key, float value){
 		addString(key, String.valueOf(value));
 	}
 	
-	public int getIntValue(String key){
+	public final float getFloatValue(String key){
+		return Float.valueOf( getString(key)  );
+	}
+	
+	public final void setInt(String key, int value){
+		addString(key, String.valueOf(value));
+	}
+	
+	public final int getIntValue(String key){
 		return Integer.valueOf( getString(key) );
 	}
 	
-	public int getIntValue(String key, int defaultValue){
+	public final int getIntValue(String key, int defaultValue){
 		String value = getString(key);
 		
 		return (value == null) ? defaultValue : Integer.valueOf( value );
 	}
 	
-	public void reset(){
+	public final void reset(){
 		values.clear();
 	}
 }

@@ -23,7 +23,10 @@ public class CollisionManager implements ISpartanManager {
 		typeCollisions = new HashMap<Integer, List<Integer>>();
 	}
 	
-	public final void registerCollisionHandler(int type1, int type2, ICollisionHandler handler){
+	public final void registerCollisionHandler(ICollisionHandler handler){
+		int type1 = handler.getFirstCollisionType();
+		int type2 = handler.getSecondCollisionType();
+		
 		handlers.put(CollisionTypePair.getID(type1, type2), handler);
 		
 		List<Integer> listType1 = typeCollisions.get(type1);

@@ -47,7 +47,7 @@ public class RadarGameForm extends BasicGameForm {
 	}
 	
 	public void render(Graphics graphics) {
-		
+		radarMesh.draw(-posState.getCenterposX(),-posState.getCenterposY());
 		
 		for(VirtualSpace4Color vs4Color : vsList){
 			for(IGameFormObject form : vs4Color.vs.getForms()){
@@ -55,8 +55,8 @@ public class RadarGameForm extends BasicGameForm {
 				
 				float pointX = formPosState.getX();
 				float pointY = formPosState.getY();
-				
-				if( (pointX > minSizeX && pointX < maxSizeX) && (pointY > minSizeY || pointY < maxSizeY) ){
+				System.out.println("Form" + form.getClass().getCanonicalName() + " (x,y)" + pointX + "," + pointY);
+				if( (pointX > minSizeX && pointX < maxSizeX) && (pointY > minSizeY && pointY < maxSizeY) ){
 					
 				float x = (formPosState.getX()/(maxSizeX-minSizeX)) * radarSizeX;
 				float y = (formPosState.getY()/(maxSizeY-minSizeY)) * radarSizeY;
@@ -66,7 +66,7 @@ public class RadarGameForm extends BasicGameForm {
 				}
 			}
 		}
-		radarMesh.draw(-posState.getCenterposX(),-posState.getCenterposY());
+		
 	}
 
 	class VirtualSpace4Color{

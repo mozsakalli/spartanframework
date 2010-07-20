@@ -30,7 +30,7 @@ public class RenderManager implements ISpartanManager {
 		virtualSpaces = new HashMap<String, VirtualGameSpace>();
 		renderOrder = new ArrayList<VirtualGameSpace>();
 		
-		inDebugMode = false;
+		inDebugMode = true;
 	}
 	
 	public void reset(){

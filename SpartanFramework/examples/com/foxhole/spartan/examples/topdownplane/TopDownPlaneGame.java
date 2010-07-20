@@ -61,7 +61,7 @@ public class TopDownPlaneGame extends BasicGame {
 		
 		//actions
 		try {
-			RotationalMovementAction raction = new RotationalMovementAction(RotationalMovementAction.class.getCanonicalName(), planeEntity, 0.2f);
+			RotationalMovementAction raction = new RotationalMovementAction(RotationalMovementAction.class.getCanonicalName(), planeEntity);
 			actionManager.registerAction(raction);
 			
 			ForwardMovementAction faction = new ForwardMovementAction(ForwardMovementAction.class.getCanonicalName(), planeEntity, 0.3f);
