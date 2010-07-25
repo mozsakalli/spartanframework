@@ -8,15 +8,15 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import com.foxhole.spartan.actions.movement.ForwardMovementAction;
-import com.foxhole.spartan.actions.movement.RotationalMovementAction;
-import com.foxhole.spartan.entity.GameEntity;
-import com.foxhole.spartan.entity.IGameEntityObject;
-import com.foxhole.spartan.exception.SpartanException;
-import com.foxhole.spartan.forms.ImageGameForm;
-import com.foxhole.spartan.managers.ActionManager;
-import com.foxhole.spartan.managers.RenderManager;
-import com.foxhole.spartan.spaces.VirtualGameSpace;
+import com.foxhole.spartan.tools.actions.movement.ForwardMovementAction;
+import com.foxhole.spartan.tools.actions.movement.RotationalMovementAction;
+import com.foxhole.tools.spartan.entity.GameEntity;
+import com.foxhole.tools.spartan.entity.IGameEntityObject;
+import com.foxhole.tools.spartan.exception.SpartanException;
+import com.foxhole.tools.spartan.forms.ImageGameForm;
+import com.foxhole.tools.spartan.managers.ActionManager;
+import com.foxhole.tools.spartan.managers.RenderManager;
+import com.foxhole.tools.spartan.spaces.VirtualGameSpace;
 
 public class TopDownPlaneGame extends BasicGame {
 
