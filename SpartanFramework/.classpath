@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="tests"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="examples"/>
 	<classpathentry kind="lib" path="lib/lwjgl.jar">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="SpartanFramework/lib"/>
