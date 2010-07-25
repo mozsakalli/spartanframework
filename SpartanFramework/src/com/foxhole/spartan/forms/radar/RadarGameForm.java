@@ -55,7 +55,7 @@ public class RadarGameForm extends BasicGameForm {
 				
 				float pointX = formPosState.getX();
 				float pointY = formPosState.getY();
-				System.out.println("Form" + form.getClass().getCanonicalName() + " (x,y)" + pointX + "," + pointY);
+				//System.out.println("Form" + form.getClass().getCanonicalName() + " (x,y)" + pointX + "," + pointY);
 				if( (pointX > minSizeX && pointX < maxSizeX) && (pointY > minSizeY && pointY < maxSizeY) ){
 					
 				float x = (formPosState.getX()/(maxSizeX-minSizeX)) * radarSizeX;

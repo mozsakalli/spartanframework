@@ -9,7 +9,7 @@ import java.util.Set;
 
 import com.foxhole.spartan.forms.IGameFormObject;
 import com.foxhole.spartan.managers.ISpartanManager;
-import com.foxhole.spartan.states.CollisionGameState;
+import com.foxhole.spartan.states.collision.CollisionGameState;
 
 public class CollisionManager implements ISpartanManager {
 	
