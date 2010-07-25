@@ -39,12 +39,13 @@ import com.foxhole.spartan.exception.SpartanException;
 /**
  * 
  * @author Tiago "Spiegel" Costa
- *
- * Usage: All the actions based on this basic game action also make use of the
- * action manager. As such the the only thing that a class must be able to do is 
- * to register and unresgister itself from the manager.  
  * 
- * creation: 2010/01/12
+ * The Basic Game action creates a standard abstract action to serve as a beginning point
+ * for all other actions in the framework, defining all the common functionality.
+ * While the actions are not forced to derive from this class, all should o so
+ * as this class already defines a lot of concepts for game development using actions 
+ * and entities.
+ * 
  */
 public abstract class BasicGameAction implements IGameActionObject {
 
@@ -55,14 +56,42 @@ public abstract class BasicGameAction implements IGameActionObject {
 	protected boolean isOver;
 	private boolean isPaused = false;
 	
+	/**
+	 * Expanded constructor, creates an action with a applicable entity (user entity) and a set of target
+	 * entities.
+	 * The applicable entity may be a target of the action or a source to obtain information, it will always depend
+	 * on the context of the action.
+	 * The target list is a simple way to apply a single action to a set of entities.
+	 * @param name the name of the action
+	 * @param userEntity the applicable entity that has launched the action
+	 * @param targetEntities a list of entities that may be targeted by the action.
+	 * @throws SpartanException returned upon error
+	 */
 	public BasicGameAction( String name, IGameEntityObject userEntity, List<IGameEntityObject> targetEntities) throws SpartanException{
 		initializeAction(name, userEntity, targetEntities);
 	}
 	
+	/**
+	 * Normal constructor, creates an action with a applicable entity (user entity).
+	 * The applicable entity may be a target of the action or a source to obtain information, it will always depend
+	 * on the context of the action.
+	 * @param name the name of the action
+	 * @param userEntity the applicable entity that has launched the action
+	 * @throws SpartanException returned upon error
+	 */
 	public BasicGameAction( String name, IGameEntityObject userEntity) throws SpartanException{
 		initializeAction(name, userEntity, null);
 	}
 	
+	/**
+	 * One target constructor, creates an action with a applicable entity (user entity) and a single target.
+	 * The applicable entity may be a target of the action or a source to obtain information, it will always depend
+	 * on the context of the action.
+	 * @param name the name of the action
+	 * @param userEntity the applicable entity that has launched the action
+	 * @param targetEntity A single action target
+	 * @throws SpartanException returned upon error
+	 */
 	public BasicGameAction( String name, IGameEntityObject userEntity, IGameEntityObject targetEntity) throws SpartanException{
 		List<IGameEntityObject> tempEntities = new ArrayList<IGameEntityObject>();
 		tempEntities.add(targetEntity);
@@ -70,6 +99,11 @@ public abstract class BasicGameAction implements IGameActionObject {
 		initializeAction(name, userEntity, tempEntities);
 	}
 	
+	/**
+	 * Basic Constructor, creates a simple object with no entities associated with the action.
+	 * @param name the name of the action
+	 * @throws SpartanException returned upon error
+	 */
 	public BasicGameAction(String name) throws SpartanException{
 		initializeAction(name, null, null);
 	}
@@ -89,44 +123,75 @@ public abstract class BasicGameAction implements IGameActionObject {
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.spartan.actions.IGameActionObject#isOver()
+	 */
 	public boolean isOver(){
 		return isOver;
 	}
 	
+	/**
+	 * Sets the action in an ended or open state. 
+	 * @param isOver the value to be set
+	 */
 	public void setIsOver(boolean isOver){
 		this.isOver = isOver;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.spartan.actions.IGameActionObject#getActionName()
+	 */
 	public String getActionName() {
 		return name;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.foxhole.spartan.actions.IGameActionObject#getLauncherEntity()
+	 */
 	public IGameEntityObject getLauncherEntity() {
 		return userEntity;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.spartan.actions.IGameActionObject#addAffectableEntity(com.foxhole.spartan.entity.IGameEntityObject)
+	 */
 	public void addAffectableEntity(IGameEntityObject entity) {
 		if(!targetEntities.contains(entity))
 			targetEntities.add(entity);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.foxhole.spartan.actions.IGameActionObject#removeAffectableEntity(com.foxhole.spartan.entity.IGameEntityObject)
+	 */
 	public void removeAffectableEntity(IGameEntityObject entity) {
 		if(targetEntities.contains(entity))
 			targetEntities.remove(entity);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.spartan.actions.IGameActionObject#isPaused()
+	 */
 	public final boolean isPaused(){
 		return isPaused;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.spartan.actions.IGameActionObject#pause()
+	 */
 	public void pause(){
 		isPaused = true;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.spartan.actions.IGameActionObject#resume()
+	 */
 	public void resume(){
 		isPaused = false;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.spartan.actions.IGameActionObject#stop()
+	 */
 	public void stop(){
 		isOver = true;
 	}

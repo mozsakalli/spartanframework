@@ -30,12 +30,17 @@ public class TopDownCameraAction extends BasicGameAction {
 	
 	RenderManager rm;
 	
-	public TopDownCameraAction(String name, IGameEntityObject targetEntity, float initialX, float initialY, float minX, float minY, float maxX, float maxY, float width, float height, RenderManager rm)
+	public TopDownCameraAction(String name, 
+			IGameEntityObject targetEntity, 
+			float initialX, float initialY, 
+			float minX, float minY, 
+			float maxX, float maxY, 
+			float width, float height, 
+			RenderManager rm)
 			throws SpartanException {
 		super(name, targetEntity);
 		
 		this.rm = rm;
-		//cameraPosState = (PositionalGameState) userEntity.getForm().getState(PositionalGameState.class.getCanonicalName());
 		
 		this.initialX = initialX;
 		this.initialY = initialY;
