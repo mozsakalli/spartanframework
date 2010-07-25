@@ -29,11 +29,9 @@
 package com.foxhole.spartan;
 
 /**
- * 
  * @author Tiago "Spiegel" Costa
  * 
- *
- * creation: 2010/01/25
+ * Definition of a spartan object concept, all other objects derive from this one.
  */
 public interface ISpartanObject {
 

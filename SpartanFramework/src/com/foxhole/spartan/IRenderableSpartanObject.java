@@ -30,6 +30,11 @@ package com.foxhole.spartan;
 
 import org.newdawn.slick.Graphics;
 
+/**
+ * @author Tiago "Spiegel" Costa
+ *
+ * Defines the concept of a renderable object in the framework
+ */
 public interface IRenderableSpartanObject extends ISpartanObject  {
 	
 	public void render( Graphics graphics );
