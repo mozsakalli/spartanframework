@@ -8,8 +8,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import com.foxhole.spartan.tools.actions.movement.ForwardMovementAction;
-import com.foxhole.spartan.tools.actions.movement.RotationalMovementAction;
+import com.foxhole.tools.spartan.actions.movement.ForwardMovementAction;
+import com.foxhole.tools.spartan.actions.movement.RotationalMovementAction;
 import com.foxhole.tools.spartan.entity.GameEntity;
 import com.foxhole.tools.spartan.entity.IGameEntityObject;
 import com.foxhole.tools.spartan.exception.SpartanException;
