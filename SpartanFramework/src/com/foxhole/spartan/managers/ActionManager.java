@@ -44,21 +44,35 @@ import com.foxhole.spartan.entity.IGameEntityObject;
 import com.foxhole.spartan.exception.SpartanException;
 
 
+/**
+ * @author Spiegel
+ * The action Manager is the component responsible for updating all the 
+ * actions in the system.
+ * This is the update of the game.
+ * The user can register actions into the manager and forget about them,
+ * these actions will expire by their own and the action manager cleans all 
+ * ended actions.
+ */
 public class ActionManager implements ISpartanManager {
 
 	//private static ActionManager _instance = new ActionManager();
 	
-	private Map<String, IGameActionObject> registedActions;
+	protected Map<String, IGameActionObject> registedActions;
 	
 	
+	/**
+	 * Creates a new action manager.
+	 */
 	public ActionManager(){
 		registedActions = new HashMap<String, IGameActionObject>();
 	}
-	/*
-	public final static ActionManager getInstance(){
-		return _instance;
-	}
-	*/
+	
+	/**
+	 * Resgisters an action into the action manager. Only after performing this step is the
+	 * action updated.
+	 * @param action the action to be updated
+	 * @throws SpartanException if any error occurs
+	 */
 	public final void registerAction(IGameActionObject action) throws SpartanException{
 		if(action == null)
 			return;
@@ -72,10 +86,22 @@ public class ActionManager implements ISpartanManager {
 			action.getLauncherEntity().addAction(action);
 	}
 	
+	/**
+	 * Obtains an action by its id and its owner entity. There can be only one action per
+	 * pair (id, owner entity)
+	 * @param id the id to which the action is known
+	 * @param entity the entity that is the owner of the action (may be null)
+	 * @return an action if any is found, null otherwise
+	 */
 	public final IGameActionObject getAction(String id, IGameEntityObject entity){
 		return registedActions.get(generateKey( id, entity ));		
 	}
 	
+	/**
+	 * Unregisters actions, removing it from the update cicle.
+	 * @param id the id to which the action is known
+	 * @param entity the entity that is the owner of the action (may be null)
+	 */
 	public final void unregisterAction(String id, IGameEntityObject entity ){
 		registedActions.remove(generateKey( id, entity ));
 		
@@ -83,10 +109,18 @@ public class ActionManager implements ISpartanManager {
 			entity.removeAction(id);
 	}
 	
+	/**
+	 * Unregisters actions, removing it from the update cycle.
+	 * @param action the intended action to be removed.
+	 */
 	public final void unregisterAction(IGameActionObject action ){
 		unregisterAction(action.getActionName(), action.getLauncherEntity());
 	}
 	
+	/**
+	 * Obtains all the actions currently being updated by the manager.
+	 * @return a Collection of actions
+	 */
 	public final Collection<IGameActionObject> getActions(){
 		Collection<IGameActionObject> result = new ArrayList<IGameActionObject>();
 		
@@ -99,10 +133,19 @@ public class ActionManager implements ISpartanManager {
 		return (entity == null ? "SpartanWorld" : entity.getId()) + "-" + id ;
 	}
 
+	/**
+	 * Resets the action manager, removing all actions for the update cycle.
+	 */
 	public void reset() {
 		this.registedActions.clear();
 	}
 
+	/**
+	 * The update method that is invoked to advance all the actions in the system.
+	 * @param gc Slick2d game container
+	 * @param sbg Slick2d State base game
+	 * @param delta the time in milliseconds after the last update
+	 */
 	public void updateActions(GameContainer gc, StateBasedGame sbg, int delta) {
 		Set<String> keys = new HashSet<String>();
 		
@@ -124,10 +167,5 @@ public class ActionManager implements ISpartanManager {
 		for(String key : removalKeys){
 			registedActions.remove(key);
 		}
-	}
-
-	public void getAllActionsFor(IGameEntityObject entity) {
-		// TODO Auto-generated method stub
-		
 	}
 }
