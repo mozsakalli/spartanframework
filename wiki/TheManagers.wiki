@@ -15,3 +15,5 @@ There are several manager within Spartan (and more comming at every iteration) l
   * *InputManager* Slick2d input listeners are great, but spartan goes another step and uses a priority schema to make some items receive input and some not.
 
 Every manager (except the Resource Manager) is only global within its SlickGameState, and changing the SlickGameState will result in changing the set of managers. This is done to preserve the gamestate full state, so it is possible to jump to another SlickGameState  and upon return to the initial state all managers shall continue from where it stopped.
+
+`{Version 2.0 will add the InputManager and the LevelBuilderManager}`
