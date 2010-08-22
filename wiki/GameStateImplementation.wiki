@@ -16,13 +16,13 @@ The identifier of the GameState is a String Identifier that will uniquely define
 From this point on, states can be anything, for example the Positional GameStates holds a position data. This game state is used in all the forms to hold its position within the game world. It could be used for a entity as well in order to gather a position of a item in a map representing the game world, or a position of an item in a radar for example. In here lies the beauty of these kinds of systems, everything may be reused from scratch.
 
 Like it was said before states can be and hold anything, like:
-Positional information
-Collision detection information
-Lives and health information for an avatar
-Resource levels for a RTS game
-Unit attack/defense information for RTS game
-Platform information (like Ice, lava, water) for a platform game
-Explosion time, damage type for a grenade in any game
+  * Positional information
+  * Collision detection information
+  * Lives and health information for an avatar
+  * Resource levels for a RTS game
+  * Unit attack/defense information for RTS game
+  * Platform information (like Ice, lava, water) for a platform game
+  * Explosion time, damage type for a grenade in any game
 
 All you can think as data for an entity/form must be inserted as a state.
 
