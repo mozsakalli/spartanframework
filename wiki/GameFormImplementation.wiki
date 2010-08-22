@@ -32,12 +32,12 @@ In the BasicGameForm, there is a method that obtains the positional state as an 
 This state includes all the normal transformations (translate, rotate, scale), direction of the form (for example a ship may be rotate 30º but is direction may be upwards or whatever you defined the direction), also it holds a center of position so the position of the form (x,y) refers to this center. 
 The center of position is also used for scaling and rotation.
 Finally the Positional state also contains a shape that represents the form as a Slick2d Shape (any convex polygon) that can be used for collision detection.
-{In version 2.0 a new state will appear that will hold not only one shape but several shapes}
+`{In version 2.0 a new state will appear that will hold not only one shape but several shapes}`
 
----
+----
 == Collision state ==
 Another state that every form that needs (but may not have if no collisions are needed) to collide must hold is the collision state, that will hold the type of the object in collisions. This is used by the collision manager to understand what kind of form its colliding, for examples player bullets may be type 1, enemies type 2, enemy bullets type 3. So collisions between 1 and 2 may exist, but 3 and 2 may not collide against each other.
 
----
+----
 
 Forms must be registered at the render Manager in order to be displayed. The render manger as a set of layers that have a render order. By obtaining the layer, all it needs to do is to add the form to that layer. (see render manager for more details).
