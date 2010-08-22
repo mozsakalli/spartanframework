@@ -15,7 +15,7 @@
     * [http://code.google.com/p/spartanframework/wiki/GameStateImplementation Game State Implementation]
     * [http://code.google.com/p/spartanframework/wiki/GameFormImplementation Game Form Implementation]
     * [http://code.google.com/p/spartanframework/wiki/GameActionImplementation Game Action Implementation]
-    * [GameSpaces Implementation Game Space Implementation]
+    * [GameSpacesImplementation Game Space Implementation]
   * [http://code.google.com/p/spartanframework/wiki/TheManagers TheManagers]
     * [http://code.google.com/p/spartanframework/wiki/ResourceManager Resource Manager]
     * [http://code.google.com/p/spartanframework/wiki/RenderManager Render Manager]
