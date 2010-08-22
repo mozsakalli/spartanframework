@@ -9,7 +9,7 @@
     * [http://code.google.com/p/spartanframework/wiki/Forms Forms]
     * [http://code.google.com/p/spartanframework/wiki/Actions Actions]
     * [http://code.google.com/p/spartanframework/wiki/Entity Game Entity]
-  * [http://code.google.com/p/spartanframework/wiki/Spartan Implementation]
+  * [http://code.google.com/p/spartanframework/wiki/SpartanFramework Implementation]
     * [http://code.google.com/p/spartanframework/wiki/Spartan GameState]
     * [http://code.google.com/p/spartanframework/wiki/Game Entity Implementation]
     * [http://code.google.com/p/spartanframework/wiki/Game State Implementation]
