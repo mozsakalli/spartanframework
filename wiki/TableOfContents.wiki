@@ -9,17 +9,19 @@
     * [http://code.google.com/p/spartanframework/wiki/Forms Forms]
     * [http://code.google.com/p/spartanframework/wiki/Actions Actions]
     * [http://code.google.com/p/spartanframework/wiki/Entity Game Entity]
-  * Spartan Implementation
-    * Game Entity Implementation
-    * Game State Implementation
-    * Game Form Implementation
-    * Game Action Implementation
-  * Basic Managers
-    * Render Manager
-    * Action Manager
-  * Advanced Managers
-    * Collision Manager
-    * Entity Manager
+  * [http://code.google.com/p/spartanframework/wiki/Spartan Implementation]
+    * [http://code.google.com/p/spartanframework/wiki/SpartanGameState]
+    * [http://code.google.com/p/spartanframework/wiki/Game Entity Implementation]
+    * [http://code.google.com/p/spartanframework/wiki/Game State Implementation]
+    * [http://code.google.com/p/spartanframework/wiki/Game Form Implementation]
+    * [http://code.google.com/p/spartanframework/wiki/Game Action Implementation]
+  * [http://code.google.com/p/spartanframework/wiki/Managers]
+    * [http://code.google.com/p/spartanframework/wiki/Resource Manager]
+    * [http://code.google.com/p/spartanframework/wiki/Render Manager]
+    * [http://code.google.com/p/spartanframework/wiki/Action Manager]
+    * [http://code.google.com/p/spartanframework/wiki/Entity Manager]
+    * [http://code.google.com/p/spartanframework/wiki/Collision Manager]
+    * [http://code.google.com/p/spartanframework/wiki/Game State Manager]
   * Tutorials
     * Tutorial 1 : Making a simple game
     * Tutorial 2 : Making a top down shooter
