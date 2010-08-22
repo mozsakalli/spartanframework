@@ -3,7 +3,7 @@
 = Table of contents =
 
   * [http://code.google.com/p/spartanframework/wiki/Introduction Introduction]
-  * [http://code.google.com/p/spartanframework/wiki/EntityBasedSystems Theory behingd Entity Based Systems]
+  * [http://code.google.com/p/spartanframework/wiki/EntityBasedSystems Theory behind Entity Based Systems]
     * [http://code.google.com/p/spartanframework/wiki/GameSpaces Game Spaces]
     * [http://code.google.com/p/spartanframework/wiki/States States]
     * [http://code.google.com/p/spartanframework/wiki/Forms Forms]
