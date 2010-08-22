@@ -23,6 +23,6 @@
     * [EntityManager Entity Manager]
     * [CollisionManager Collision Manager]
     * [GameStateManager Game State Manager]
-  * Tutorials
-    * Tutorial 1 : Making a simple game
+  * [ tutorials Tutorials]
+    * [tutorialOne Tutorial 1 : Making a simple game]
     * Tutorial 2 : Making a top down shooter
