@@ -30,10 +30,23 @@ package com.foxhole.tools.spartan.states;
 
 import com.foxhole.tools.spartan.INonRenderableSpartanObject;
 
+/**
+ * This is the interface for the GameStateObject. Every GameState must implement this interface
+ * 
+ * @author Tiago "Spiegel" Costa
+ * 
+ */
 public interface IGameStateObject extends INonRenderableSpartanObject {
 
+	/**
+	 * Changes the Id of the object.
+	 * @param id h new Identification for the stateobject.
+	 */
 	public void setId(String id);
 	
+	/**
+	 * Obtains the Id of the gamestate
+	 * @return an string representation of the game state identifier
+	 */
 	public String getId();
-	
 }

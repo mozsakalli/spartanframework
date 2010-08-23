@@ -28,23 +28,68 @@
 
 package com.foxhole.tools.spartan.states;
 
+import java.util.List;
+import java.util.Map;
 
+import com.foxhole.tools.spartan.exception.SpartanException;
+
+
+/**
+ * The abstract implementation of the basic Game State Object.
+ * All the Spartan Game State Objects derive from this object.
+ * 
+ * @author Tiago "Spiegel" Costa
+ */
 public abstract class AbstractGameState implements IGameStateObject {
 
+	protected static String IDENTIFIER	= "IDENTIFIER";
+	
+	/**
+	 * The id for this Game State
+	 */
 	private String id;
 	
+	/** 
+	 * Implements the basic Constructor for the Game State Object
+	 * 
+	 * @param id The id for this game state.
+	 */
 	public AbstractGameState(String id){
 		setId(id);
 	}
 	
-	//@Override
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.states.IGameStateObject#getId()
+	 */
 	public final String getId() {
 		return id;
 	}
 
-	//@Override
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.states.IGameStateObject#setId(java.lang.String)
+	 */
 	public final void setId(String id) {
 		this.id = id;
 	}
+	
+	/**
+	 * To use the Level Loader interface, all the Game States should implement the initialization of the 
+	 * class via a map of parameter values.
+	 * 
+	 * @param stateDetails The values that will be used to fill the data of the class
+	 * @return a new gamestate instance properly initialized 
+	 * @throws SpartanException When an error occurs
+	 */
+	public static IGameStateObject initialize(Map<String, String> stateDetails) throws SpartanException{
+		return null;
+	}
 
+	/**
+	 * Obtains a list of string that represent the details that must be passed to the initialize method
+	 * 
+	 * @return the list of strings
+	 */
+	public static List<String> getStateDetails(){
+		return null;
+	}
 }

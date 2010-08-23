@@ -28,6 +28,12 @@
 
 package com.foxhole.tools.spartan.managers;
 
+/**
+ * The common spartan manager interface
+ * 
+ * @author Tiago "Spiegel" Costa
+ *
+ */
 public interface ISpartanManager {
 
 }

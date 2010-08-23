@@ -31,20 +31,41 @@ package com.foxhole.tools.spartan.managers;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The identifier manager is responsible for the generation of unique IDs within the 
+ * framework.
+ * 
+ * @author Tiago "Spiegel" Costa
+ *
+ */
 public class IdentifierManager implements ISpartanManager {
 
 	private Map<String, Integer> mapIds;
 	
 	private static IdentifierManager idGenerator = new IdentifierManager();
 	
+	/**
+	 * Construct the identifier manager
+	 */
 	public IdentifierManager(){
 		mapIds = new HashMap<String, Integer>();
 	}
 	
+	/**
+	 * Obtains the current active instance of the identifier manager
+	 * 
+	 * @return a handle the current active instance of the identifier manager, null if no active instance is selected
+	 */
 	public static IdentifierManager getInstance(){
 		return idGenerator;
 	}
 	
+	/**
+	 * Generates a uniqueID
+	 * 
+	 * @param key the key to associate with the identifier 
+	 * @return the identifier
+	 */
 	public synchronized int generateId(String key){
 		if(key == null)
 			return -1;

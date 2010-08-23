@@ -29,9 +29,10 @@
 package com.foxhole.tools.spartan;
 
 /**
+ * Defines the concept of a non-renderable object in the framework
+ * 
  * @author Tiago "Spiegel" Costa
  *
- * Defines the concept of a non-renderable object in the framework
  */
 public interface INonRenderableSpartanObject extends ISpartanObject {
 

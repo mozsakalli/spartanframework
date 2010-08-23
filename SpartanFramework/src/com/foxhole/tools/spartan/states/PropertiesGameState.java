@@ -34,46 +34,115 @@ import java.util.Map;
 import com.foxhole.tools.spartan.states.AbstractGameState;
 
 
+/**
+ * The properties game state is a game state for gathering pair <name, value> properties.
+ * 
+ * @author Tiago "Spiegel" Costa
+ *
+ */
 public class PropertiesGameState extends AbstractGameState {
 
 	Map<String, String> values;
 	
+	/**
+	 * Constructs a property game state
+	 * 
+	 * @param id the ID of the game state
+	 */
 	public PropertiesGameState(String id){
 		super(id);
 		values = new HashMap<String, String>();
 	}
 	
+	/**
+	 * Obtains a property in the string form
+	 * 
+	 * @param key the key of the property
+	 * @return the value of the property in the string form, null if none is found
+	 */
 	public final String getString(String key){
 		return values.get(key);
 	}
 	
+	/**
+	 * Adds a string to property list 
+	 * 
+	 * @param key the key of the property
+	 * @param value the value of the property in the string form
+	 */
 	public final void addString(String key, String value){
 		if(key != null && value != null)
 			values.put(key, value);
 	}
 	
-	public final void setFloat(String key, float value){
+	/**
+	 * Adds a float to property list 
+	 * 
+	 * @param key the key of the property
+	 * @param value the value of the property in the float form
+	 */
+	public final void addFloat(String key, float value){
 		addString(key, String.valueOf(value));
 	}
 	
-	public final float getFloatValue(String key){
-		return Float.valueOf( getString(key)  );
+	/**
+	 * Obtains a property in the float form
+	 * 
+	 * @param key the key of the property
+	 * @return the value of the property in the float form, null if not found
+	 */
+	public final Float getFloatValue(String key){
+		String value = getString(key);
+		
+		if(value == null){
+			return null;
+		}
+		
+		return Float.valueOf( value );
 	}
 	
-	public final void setInt(String key, int value){
+	/**
+	 * Adds a int to property list 
+	 * 
+	 * @param key the key of the property
+	 * @param value the value of the property in the int form
+	 */
+	public final void addInt(String key, int value){
 		addString(key, String.valueOf(value));
 	}
 	
-	public final int getIntValue(String key){
-		return Integer.valueOf( getString(key) );
+	/**
+	 * Obtains a property in the int form
+	 * 
+	 * @param key the key of the property
+	 * @return the value of the property in the int form, null if not found
+	 */
+	public final Integer getAddValue(String key){
+		String value = getString(key);
+		
+		if(value == null){
+			return null;
+		}
+		
+		return Integer.valueOf( value );
 	}
 	
-	public final int getIntValue(String key, int defaultValue){
+	/**
+	 * Obtains a property in the int form, if no value is present the default value is assumed
+	 * 
+	 * @param key the key of the property
+	 * @param defaultValue the default value
+	 * @return the value of the property in the int form, null if not found
+	 */
+	public final Integer getIntValue(String key, int defaultValue){
 		String value = getString(key);
 		
 		return (value == null) ? defaultValue : Integer.valueOf( value );
 	}
 	
+	/**
+	 * reset game state
+	 */
 	public final void reset(){
 		values.clear();
 	}

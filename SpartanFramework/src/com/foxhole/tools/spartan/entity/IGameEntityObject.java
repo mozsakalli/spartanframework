@@ -43,49 +43,143 @@ import com.foxhole.tools.spartan.states.IGameStateObject;
 /**
  * IGameEntityObject, represents a game token.
  * 
- * @author Spiegel
- * creation: 2009/12/06
+ * @author Tiago "Spiegel" Costa
+ * 
  */
 public interface IGameEntityObject extends INonRenderableSpartanObject {
 
 	// Entity methods
+	/**
+	 * Obtains the id of the entity
+	 * @return the Id for this entity
+	 */
 	public int getId();
 	
-	public IGameEntityObject createEntity( String name );
+	/**
+	 * Obtains a child entity for this entity.
+	 * @param name The name of the child to create
+	 * @return a child entity
+	 * @throws SpartanException
+	 */
+	public IGameEntityObject createEntity( String name ) throws SpartanException;
 	
+	/**
+	 * Removes a child entity.
+	 * 
+	 * @param entity the entity to remove
+	 */
 	public void removeEntity( IGameEntityObject entity );
 	
+	/**
+	 * Obtains all the direct children entities of this entity. 
+	 * 
+	 * @return A list of entities representing the direct children
+	 */
 	public List<IGameEntityObject> getChildren();
 	
+	/**
+	 * Obtains the parent of this entity.
+	 * 
+	 * @return An handle for the parent of this entity
+	 */
 	public IGameEntityObject getParent();
 	
+	/**
+	 * Sets the new parent of this entity, all references of the old parent are destroyed.
+	 * 
+	 * @param parent A handle for the new parent
+	 */
 	public void setParent(IGameEntityObject parent);
 	
 	// Action	
+	/**
+	 * Obtains all the active actions that were launched by this entity
+	 * 
+	 * @return A collection of actions.
+	 */
 	public Collection<IGameActionObject> getActiveActions();
 	
+	/**
+	 * Adds an action to the list of this entity action
+	 * 
+	 * @param actionName The name that will represent the action
+	 * @param action The handle for the action
+	 */
 	public void addAction(String actionName, IGameActionObject action);
 	
+	/**
+	 * Adds an action to the list of this entity action.
+	 * Since no name is give, the name of the action itself is taken into account.
+	 * 
+	 * @param action The handle for the action
+	 */
 	public void addAction(IGameActionObject action);
 	
-	public void removeAction(String action);
+	/**
+	 * Removes an action from the list of entity actions.
+	 * 
+	 * @param actionName The action name
+	 */
+	public void removeAction(String actionName);
 	
-	public IGameActionObject getAction(String action);
+	/**
+	 * Obtains a action from the list of actions for this entity.
+	 * 
+	 * @param actionName The name of the action
+	 * @return The handle for the action, null if none is found.
+	 */
+	public IGameActionObject getAction(String actionName);
 	
 	// Form
+	/**
+	 * Obtains the form of the entity.
+	 * 
+	 * @return A handle for the form, null if no form is found.
+	 */
 	public IGameFormObject getForm();
 	
+	/**
+	 * Sets the form of the action.
+	 * 
+	 * @param newForm The new form to serve as visual representation of the entity
+	 */
 	public void setForm(IGameFormObject newForm);
 	
 	// State
+	/**
+	 * Obtains all states associated with the entity
+	 * 
+	 * @return a map of states
+	 */
 	public Map<String, IGameStateObject> getStates() ;
 	
-	public IGameStateObject getState(String gameState) ;
+	/**
+	 * Obtains a specific state of this entity.
+	 * 
+	 * @param gameStateName The name of the state to obtain.
+	 * @return An handle for the state if found, null if nothing is found.
+	 */
+	public IGameStateObject getState(String gameStateName) ;
 	
+	/**
+	 * Adds a new state to the entity.
+	 * 
+	 * @param newState The handle for the new state.
+	 */
 	public void addState(IGameStateObject newState);
 	
+	/**
+	 * Removes a state from the entity. If no state matches, nothing is done.
+	 * 
+	 * @param state the state handle.
+	 */
 	public void removeState(IGameStateObject state);
 	
 	// Space
+	/**
+	 * Obtains the logical space of the entity.
+	 * 
+	 * @return A handle for the logical space of this entity
+	 */
 	public LogicalGameSpace getSpace();
 }

@@ -30,16 +30,18 @@ package com.foxhole.tools.spartan.forms;
 
 import java.util.Map;
 
-import org.newdawn.slick.geom.Shape;
-
 import com.foxhole.tools.spartan.IRenderableSpartanObject;
-import com.foxhole.tools.spartan.entity.GameEntity;
 import com.foxhole.tools.spartan.entity.IGameEntityObject;
 import com.foxhole.tools.spartan.spaces.VirtualGameSpace;
 import com.foxhole.tools.spartan.states.IGameStateObject;
-import com.foxhole.tools.spartan.states.PositionalGameState;
 
 
+/**
+ * Interface that specifies the well known behavior of a form.
+ * 
+ * @author Tiago "Spiegel" Costa
+ *
+ */
 public interface IGameFormObject extends IRenderableSpartanObject {
 
 	/* *********************************************************************************
@@ -48,14 +50,35 @@ public interface IGameFormObject extends IRenderableSpartanObject {
 	 * 
 	 */
 	// Form
-	public void setActiveState( IGameStateObject state );
+	//public void setActiveState( IGameStateObject state );
 	
+	/**
+	 * Get the list of states in the form
+	 * 
+	 * @return a map of states
+	 */
 	public Map<String, IGameStateObject> getStates();
 	
+	/**
+	 * Obtains a specific state
+	 * 
+	 * @param stateName the state identifier
+	 * @return an handle to a state object, null if none is found
+	 */
 	public IGameStateObject getState(String stateName);
 	
+	/**
+	 * Sets the states to the ones in the parameter list.
+	 * 
+	 * @param stateList the new list of states
+	 */
 	public void setStateList( Map<String, IGameStateObject> stateList );
 	
+	/**
+	 * Ads a new state to the form
+	 * 
+	 * @param state a handle to a state object
+	 */
 	public void addState( IGameStateObject state );
 	
 	// space
@@ -72,27 +95,88 @@ public interface IGameFormObject extends IRenderableSpartanObject {
 	 * action on all intervinent entities.
 	 */
 	
+	/**
+	 * Obtains the virtual space of this form.
+	 * 
+	 * @return an handle to the virtual space
+	 */
 	public VirtualGameSpace getVirtualSpace();
 	
+	/**
+	 * Adds a new entity to the virtual space of this form
+	 * 
+	 * @param entity an handle to the entity to add
+	 */
 	public void addEntityToSpace(IGameFormObject entity);
 	
+	/**
+	 * Removes a entity from this virtual space
+	 * 
+	 * @param entity an handle to the entity to remove
+	 */
 	public void removeEntityFromSpace(IGameFormObject entity);
 
+	/**
+	 * Sets the owner entity of this form.
+	 * 
+	 * @param gameEntity the game entity that the form will recognize as its owner
+	 */
 	public void setEntity(IGameEntityObject gameEntity);
 	
+	/**
+	 * Obtains the owner entity of this form.
+	 * 
+	 * @return an handle to the entity that is recognized as the owner of this form
+	 */
 	public IGameEntityObject getEntity();
 	
+	/**
+	 * Obtains the Positional element data of the form.
+	 * 
+	 * @return an handle to the positional data
+	 */
 	public IFormPosition getPosition();
 	
+	/**
+	 * Sets the form to render on top of an identity matrix.
+	 * This will make the HUD effect where the form is rendered as a HUD element and stay put on its
+	 * position, even if the world moves.
+	 * 
+	 * @param identity a boolean value
+	 */
 	public void setIdentity(boolean identity);
 	
+	/**
+	 * Check to see if the form uses the identity. 
+	 * 
+	 * @return a boolean 
+	 */
 	public boolean useIdentity();
 	
+	/**
+	 * No need to use this
+	 * 
+	 * @param pushTheMatrix
+	 * @deprecated
+	 */
 	public void setMatrixPush(boolean pushTheMatrix);
 	
+	/**
+	 * No need to use this
+	 * 
+	 * @return boolean
+	 * @deprecated
+	 */
 	public boolean useMatrixPush();
 	
 	// Collision
 	
+	/**
+	 * Check to see if a collision between forms occurs
+	 * 
+	 * @param other the other form
+	 * @return true of the two forms are colliding, false if not.
+	 */
 	public boolean collidesWith(IGameFormObject other);
 }
+

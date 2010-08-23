@@ -31,11 +31,17 @@ package com.foxhole.tools.spartan;
 import org.newdawn.slick.Graphics;
 
 /**
+ * Defines the concept of a non-renderable object in the framework
+ * 
  * @author Tiago "Spiegel" Costa
  *
- * Defines the concept of a renderable object in the framework
  */
 public interface IRenderableSpartanObject extends ISpartanObject  {
 	
+	/**
+	 * Implements the render method for all Renderable objects
+	 * 
+	 * @param graphics The Slick2d graphics objects
+	 */
 	public void render( Graphics graphics );
 }

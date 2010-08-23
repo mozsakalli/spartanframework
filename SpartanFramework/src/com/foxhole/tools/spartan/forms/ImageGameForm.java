@@ -29,21 +29,31 @@
 package com.foxhole.tools.spartan.forms;
 
 
-import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.geom.Shape;
 
-import com.foxhole.tools.spartan.managers.RenderManager;
-
+/**
+ * The most basic Form possible, the ImageGameForm will render an image into the screen
+ * 
+ * @author Tiago "Spiegel" Costa
+ *
+ */
 public class ImageGameForm extends BasicGameForm {
 	protected Image mesh;
 	
+	/**
+	 * The constructor for ImageGameForm
+	 * 
+	 * @param image a slick2d image
+	 */
 	public ImageGameForm(Image image){
 		super();
 		
+		initialize(image);
+	}
+
+	private void initialize(Image image) {
 		mesh = image;
 		
 		Rectangle collisionShape = new Rectangle(0, 0, mesh.getWidth(), mesh.getHeight());
@@ -51,6 +61,9 @@ public class ImageGameForm extends BasicGameForm {
 		getPosition().setCollisionShape(collisionShape);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.IRenderableSpartanObject#render(org.newdawn.slick.Graphics)
+	 */
 	public void render(Graphics graphics) {
 		mesh.draw();
 		

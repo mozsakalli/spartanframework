@@ -7,7 +7,7 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="SpartanFramework/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/slick.jar" sourcepath="D:/bustedNeurons/workspace/Slick"/>
+	<classpathentry kind="lib" path="lib/slick.jar" sourcepath="D:/doubleHazard/workspace_old/Slick"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

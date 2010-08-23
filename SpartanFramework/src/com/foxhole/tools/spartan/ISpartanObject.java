@@ -29,9 +29,10 @@
 package com.foxhole.tools.spartan;
 
 /**
+ * Definition of a spartan object concept, all other objects derive from this one.
+ * 
  * @author Tiago "Spiegel" Costa
  * 
- * Definition of a spartan object concept, all other objects derive from this one.
  */
 public interface ISpartanObject {
 

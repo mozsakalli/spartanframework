@@ -28,17 +28,33 @@
 
 package com.foxhole.tools.spartan.spaces;
 
-import java.util.List;
-
 import com.foxhole.tools.spartan.INonRenderableSpartanObject;
 import com.foxhole.tools.spartan.ISpartanObject;
-import com.foxhole.tools.spartan.entity.IGameEntityObject;
 
+/**
+ * The basic interface for the gamespace
+ * 
+ * @author Tiago "Spiegel" Costa
+ *
+ */
 public interface IGameSpaceObject extends INonRenderableSpartanObject {
 
+	/**
+	 * Adds an object to the gamespace
+	 * 
+	 * @param object the object to add
+	 */
 	public void addObject(ISpartanObject object);
 
+	/**
+	 * Removes an object from the gamespace
+	 * 
+	 * @param object the object to remove
+	 */
 	public void removeObject(ISpartanObject object);
 	
+	/**
+	 * Removes all objects from this gamespace
+	 */
 	public void reset();
 }

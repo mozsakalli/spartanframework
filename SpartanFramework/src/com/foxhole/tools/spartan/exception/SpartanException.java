@@ -28,6 +28,13 @@
 
 package com.foxhole.tools.spartan.exception;
 
+/**
+ * The exception of the spartan library.
+ * All exceptions inside the library shall be mapped to this one.  
+ * 
+ * @author Tiago "Spiegel" Costa
+ *
+ */
 public class SpartanException extends Exception {
 
 	/**
@@ -35,10 +42,21 @@ public class SpartanException extends Exception {
 	 */
 	private static final long serialVersionUID = 5145845406386469084L;
 
+	/**
+	 * Maps an existing exception with a new message.
+	 * 
+	 * @param msg the new message
+	 * @param t the existent Throwable
+	 */
 	public SpartanException(String msg, Throwable t){
 		super(msg, t);
 	}
 	
+	/**
+	 * Creates a new exception with a message.
+	 * 
+	 * @param msg the new message
+	 */
 	public SpartanException(String msg){
 		super(msg);
 	}

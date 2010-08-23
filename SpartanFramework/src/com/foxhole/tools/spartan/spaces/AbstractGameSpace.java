@@ -31,23 +31,44 @@ package com.foxhole.tools.spartan.spaces;
 import java.util.List;
 
 import com.foxhole.tools.spartan.ISpartanObject;
-import com.foxhole.tools.spartan.entity.IGameEntityObject;
 
 
 /**
  * The game space object is a collection of other objects in the system.
+ * This is an generic interface for all the user implemented gameSpaces. 
  * 
- * @author Spiegel
- * creation: 2009/12/07
+ * @author Tiago "Spiegel" Costa
+ *
  */
 public interface AbstractGameSpace extends IGameSpaceObject {
-	public void addEntity(ISpartanObject object);
+
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.spaces.IGameSpaceObject#addObject(com.foxhole.tools.spartan.ISpartanObject)
+	 */
+	public void addObject(ISpartanObject object);
 	
-	public void removeEntity(ISpartanObject object);
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.spaces.IGameSpaceObject#removeObject(com.foxhole.tools.spartan.ISpartanObject)
+	 */
+	public void removeObject(ISpartanObject object);
 	
-	public boolean checkForEntity(IGameEntityObject entity);
+	/**
+	 * Verifies if the object exists in the GameSpace
+	 * 
+	 * @param object the object to check
+	 * @return true if it exists, false otherwise
+	 */
+	public boolean checkForObject(ISpartanObject object);
 	
-	public List<IGameEntityObject> getEntities();
+	/**
+	 * Obtains a list of objects in the gamespace
+	 * 
+	 * @return a list of objects
+	 */
+	public List<ISpartanObject> getObjects();
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.spaces.IGameSpaceObject#reset()
+	 */
 	public void reset();
 }

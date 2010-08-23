@@ -31,9 +31,6 @@ package com.foxhole.tools.spartan.forms;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Shape;
 
 import com.foxhole.tools.spartan.entity.IGameEntityObject;
@@ -42,6 +39,13 @@ import com.foxhole.tools.spartan.states.IGameStateObject;
 import com.foxhole.tools.spartan.states.PositionalGameState;
 
 
+/**
+ * This is the implementation of the basic for all forms.
+ * All the forms should derive from this class.
+ * 
+ * @author Tiago "Spiegel" Costa
+ *
+ */
 public abstract class BasicGameForm implements IGameFormObject {
 
 	// Game Form virtual space
@@ -61,6 +65,9 @@ public abstract class BasicGameForm implements IGameFormObject {
 	
 	protected Shape boundingShape;
 	
+	/**
+	 * Constructs a basic form
+	 */
 	public BasicGameForm(){
 		virtualSpace = new VirtualGameSpace("form");
 		activeState = null;
@@ -72,7 +79,7 @@ public abstract class BasicGameForm implements IGameFormObject {
 		posState = new PositionalGameState(PositionalGameState.class.getCanonicalName());
 		posState.setScale(1);
 		posState.setRotation(0);
-		posState.setXY(0,0);
+		posState.setPosition(0,0);
 		
 		addState(posState);
 		
@@ -81,76 +88,125 @@ public abstract class BasicGameForm implements IGameFormObject {
 		identity = false;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.forms.IGameFormObject#setEntity(com.foxhole.tools.spartan.entity.IGameEntityObject)
+	 */
 	public void setEntity(IGameEntityObject gameEntity){
 		this.entity = gameEntity;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.forms.IGameFormObject#getEntity()
+	 */
 	public final IGameEntityObject getEntity(){
 		return entity;
 	}
 	
 	//@Override
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.forms.IGameFormObject#addEntityToSpace(com.foxhole.tools.spartan.forms.IGameFormObject)
+	 */
 	public void addEntityToSpace(IGameFormObject form) {
 		virtualSpace.addObject(form);
 	}
 	
 	//@Override
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.forms.IGameFormObject#removeEntityFromSpace(com.foxhole.tools.spartan.forms.IGameFormObject)
+	 */
 	public void removeEntityFromSpace(IGameFormObject form) {
 		virtualSpace.removeObject(form);
 	}
 
 	//@Override
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.forms.IGameFormObject#getStates()
+	 */
 	public Map<String, IGameStateObject> getStates() {
 		return states;
 	}
 	
 	//@Override
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.forms.IGameFormObject#getState(java.lang.String)
+	 */
 	public IGameStateObject getState(String stateName){
 		return states.get(stateName);
 	}
 
 	//@Override
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.forms.IGameFormObject#getVirtualSpace()
+	 */
 	public VirtualGameSpace getVirtualSpace() {
 		return virtualSpace;
 	}
 
 	//@Override
+	/**
+	 * sets thge active state
+	 * @param state the active state
+	 * @deprecated no use for this metod
+	 */
 	public void setActiveState(IGameStateObject state) {
 		if(states.containsKey(state.getId()))
 			activeState = state;
 	}
 	
 	//@Override
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.forms.IGameFormObject#addState(com.foxhole.tools.spartan.states.IGameStateObject)
+	 */
 	public void addState(IGameStateObject state) {
 		if( !states.containsKey(state.getId()) )
 			states.put(state.getId(), state);
 	}
 
-	//@Override
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.forms.IGameFormObject#setStateList(java.util.Map)
+	 */
 	public void setStateList(Map<String, IGameStateObject> stateMap) {
 		states = stateMap;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.forms.IGameFormObject#getPosition()
+	 */
 	public final IFormPosition getPosition(){
 		return posState;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.forms.IGameFormObject#setMatrixPush(boolean)
+	 */
 	public final void setMatrixPush(boolean pushTheMatrix){
 		this.pushTheMatrix = pushTheMatrix;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.forms.IGameFormObject#useMatrixPush()
+	 */
 	public final boolean useMatrixPush(){
 		return pushTheMatrix;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.forms.IGameFormObject#setIdentity(boolean)
+	 */
 	public void setIdentity(boolean identity){
 		this.identity = identity;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.forms.IGameFormObject#useIdentity()
+	 */
 	public final boolean useIdentity(){
 		return identity;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.forms.IGameFormObject#collidesWith(com.foxhole.tools.spartan.forms.IGameFormObject)
+	 */
 	public boolean collidesWith(IGameFormObject other) {
 		Shape collisionShape = getPosition().getCollisionShape();
 		
@@ -159,18 +215,4 @@ public abstract class BasicGameForm implements IGameFormObject {
 		return collisionShape != null && otherCollisionShape != null && 
 			   collisionShape.intersects(otherCollisionShape);
 	}
-	
-	/*
-	public final void renderCollisionShape(Graphics graphics){
-		GL11.glPushMatrix();
-		
-		GL11.glLoadIdentity();
-		
-		Shape s = getPosition().getCollisionShape();
-		
-		graphics.setColor(Color.green);
-		graphics.draw(s);
-		
-		GL11.glPopMatrix();
-	}*/
 }

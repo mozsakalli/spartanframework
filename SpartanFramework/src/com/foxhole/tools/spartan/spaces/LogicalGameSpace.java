@@ -37,15 +37,32 @@ import com.foxhole.tools.spartan.ISpartanObject;
 import com.foxhole.tools.spartan.entity.IGameEntityObject;
 
 
+/**
+ * The logical gamespace is an entity oriented implementation of a gamespace.
+ * This gamespace will only serve to hold entities and its logic part, hence the
+ * logic part of the name. 
+ * 
+ * @author FoxholeStudios
+ *
+ */
 public class LogicalGameSpace implements IGameSpaceObject {
 	
+	/**
+	 * Creates a new logical game space
+	 */
 	public LogicalGameSpace(){
 		reset();
 	}
 	
-	List<IGameEntityObject> entityList;
-	Map<Integer, IGameEntityObject> entityMap;
+	private List<IGameEntityObject> entityList;
+	private Map<Integer, IGameEntityObject> entityMap;
 	
+	/**
+	 * Inserts an entity to the gamespace.
+	 * The only allowed objects are entities. 
+	 * 
+	 * @see com.foxhole.tools.spartan.spaces.IGameSpaceObject#addObject(com.foxhole.tools.spartan.ISpartanObject)
+	 */
 	public void addObject(ISpartanObject object){
 		if(object != null && object instanceof IGameEntityObject){
 			IGameEntityObject entity = (IGameEntityObject)object;
@@ -54,6 +71,12 @@ public class LogicalGameSpace implements IGameSpaceObject {
 		}
 	}
 	
+	/**
+	 * Removes an entity from the gamespace.
+	 * The only allowed objects are entities. 
+	 * 
+	 * @see com.foxhole.tools.spartan.spaces.IGameSpaceObject#removeObject(com.foxhole.tools.spartan.ISpartanObject)
+	 */
 	public void removeObject(ISpartanObject object){
 		if(object != null && object instanceof IGameEntityObject){
 			IGameEntityObject entity = (IGameEntityObject)object;
@@ -62,6 +85,13 @@ public class LogicalGameSpace implements IGameSpaceObject {
 		}
 	}
 	
+	
+	/**
+	 * Verifies if the entity exists in the GameSpace
+	 * 
+	 * @param entity the entity to check
+	 * @return true if it exists, false otherwise
+	 */
 	public boolean checkForEntity(IGameEntityObject entity){
 		if(entity != null){
 			return entityMap.containsKey(entity.getId());
@@ -70,10 +100,18 @@ public class LogicalGameSpace implements IGameSpaceObject {
 		return false;
 	}
 	
+	/**
+	 * Obtains a list of entities in the gamespace
+	 * 
+	 * @return a list of entities
+	 */
 	public List<IGameEntityObject> getEntities(){
 		return entityList;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.foxhole.tools.spartan.spaces.IGameSpaceObject#reset()
+	 */
 	public void reset(){
 		entityList = new LinkedList<IGameEntityObject>();
 		entityMap = new HashMap<Integer, IGameEntityObject>();

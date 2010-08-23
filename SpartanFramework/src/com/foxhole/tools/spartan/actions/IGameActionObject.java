@@ -28,8 +28,6 @@
 
 package com.foxhole.tools.spartan.actions;
 
-import java.util.List;
-
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -37,11 +35,13 @@ import com.foxhole.tools.spartan.INonRenderableSpartanObject;
 import com.foxhole.tools.spartan.entity.IGameEntityObject;
 
 /**
- * @author Tiago "Spiegel" Costa
  * 
  * The definition of a action in the spartan framework, all entities MUST
  * implement this interface in order to interact with all the other components
  * in the system.
+ * 
+ * @author Tiago "Spiegel" Costa
+ * 
  */
 public interface IGameActionObject extends INonRenderableSpartanObject {
 	
@@ -57,6 +57,7 @@ public interface IGameActionObject extends INonRenderableSpartanObject {
 	 * entity that has launched the action, but the entity to which the action concerns.
 	 * Example: a movement action shall have the launcher entity as the entity that is affected
 	 * by the movement.
+	 * 
 	 * @return An entity, null if the action does not concern an entity.
 	 */
 	public IGameEntityObject getLauncherEntity();
@@ -65,6 +66,7 @@ public interface IGameActionObject extends INonRenderableSpartanObject {
 	 * Adds a new entity to the list of affected entities to this action.
 	 * Example: if there is a forcefield action that slows every entity within it,
 	 * when an entity enters the force field it should be added using this method.
+	 * 
 	 * @param entity the entity to add
 	 */
 	public void addAffectableEntity( IGameEntityObject entity );
@@ -74,29 +76,33 @@ public interface IGameActionObject extends INonRenderableSpartanObject {
 	 * Example: if there is a forcefield action that slows every entity within it,
 	 * when an entity exists the force field it should be removed from the action 
 	 * using this method.
+	 * 
 	 * @param entity the entity to remove
 	 */
 	public void removeAffectableEntity( IGameEntityObject entity );
 	
 	// action 	
 	/**
-	 * The update method of the action, this is where the action shall perform its fucntion.
+	 * The update method of the action, this is where the action shall perform its function.
 	 * This is exactly the same method signature that can be found in Slick2d update method.
 	 * Usually this method is called by the action manager, and not directly by the user.
+	 * 
 	 * @param gc the game container
 	 * @param sbg the state base game (null if no slick states are used)
-	 * @param delta the time in milliseconds since the las update
+	 * @param delta the time in milliseconds since the last update
 	 */
 	public void update( GameContainer gc, StateBasedGame sbg, int delta );
 	
 	/**
 	 * Checks if the action has ended.
+	 * 
 	 * @return true if the action is over, false otherwise
 	 */
 	public boolean isOver();
 	
 	/**
 	 * Checks if the action is paused.
+	 * 
 	 * @return true if the action is paused, false otherwise
 	 */
 	public boolean isPaused();
@@ -107,7 +113,7 @@ public interface IGameActionObject extends INonRenderableSpartanObject {
 	public void pause();
 	
 	/**
-	 * Resume the actionif it has been paused before, otherwise it does nothing.
+	 * Resume the action if it has been paused before, otherwise it does nothing.
 	 */
 	public void resume();
 

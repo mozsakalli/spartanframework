@@ -38,18 +38,18 @@ import com.foxhole.tools.spartan.exception.SpartanException;
 
 /**
  * 
- * @author Tiago "Spiegel" Costa
- * 
  * The Basic Game action creates a standard abstract action to serve as a beginning point
  * for all other actions in the framework, defining all the common functionality.
  * While the actions are not forced to derive from this class, all should o so
  * as this class already defines a lot of concepts for game development using actions 
  * and entities.
  * 
+ * @author Tiago "Spiegel" Costa
  */
 public abstract class BasicGameAction implements IGameActionObject {
 
 	private String name;
+	
 	protected List<IGameEntityObject> targetEntities;
 	protected IGameEntityObject userEntity;
 	
@@ -62,6 +62,7 @@ public abstract class BasicGameAction implements IGameActionObject {
 	 * The applicable entity may be a target of the action or a source to obtain information, it will always depend
 	 * on the context of the action.
 	 * The target list is a simple way to apply a single action to a set of entities.
+	 * 
 	 * @param name the name of the action
 	 * @param userEntity the applicable entity that has launched the action
 	 * @param targetEntities a list of entities that may be targeted by the action.
@@ -75,6 +76,7 @@ public abstract class BasicGameAction implements IGameActionObject {
 	 * Normal constructor, creates an action with a applicable entity (user entity).
 	 * The applicable entity may be a target of the action or a source to obtain information, it will always depend
 	 * on the context of the action.
+	 * 
 	 * @param name the name of the action
 	 * @param userEntity the applicable entity that has launched the action
 	 * @throws SpartanException returned upon error
@@ -87,6 +89,7 @@ public abstract class BasicGameAction implements IGameActionObject {
 	 * One target constructor, creates an action with a applicable entity (user entity) and a single target.
 	 * The applicable entity may be a target of the action or a source to obtain information, it will always depend
 	 * on the context of the action.
+	 * 
 	 * @param name the name of the action
 	 * @param userEntity the applicable entity that has launched the action
 	 * @param targetEntity A single action target
@@ -101,6 +104,7 @@ public abstract class BasicGameAction implements IGameActionObject {
 	
 	/**
 	 * Basic Constructor, creates a simple object with no entities associated with the action.
+	 * 
 	 * @param name the name of the action
 	 * @throws SpartanException returned upon error
 	 */
@@ -109,6 +113,7 @@ public abstract class BasicGameAction implements IGameActionObject {
 	}
 	
 	private void initializeAction(String name, IGameEntityObject userEntity, List<IGameEntityObject> targetEntities){
+		
 		this.targetEntities = new LinkedList<IGameEntityObject>();
 		
 		if(targetEntities != null){
@@ -132,6 +137,7 @@ public abstract class BasicGameAction implements IGameActionObject {
 	
 	/**
 	 * Sets the action in an ended or open state. 
+	 * 
 	 * @param isOver the value to be set
 	 */
 	public void setIsOver(boolean isOver){
