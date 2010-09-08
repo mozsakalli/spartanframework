@@ -23,3 +23,15 @@ svn checkout http://spartanframework.googlecode.com/svn/trunk/ SpartanUtils-read
 }}}
 
 This project's Subversion repository may be accessed using many different client programs and plug-ins. See your client's documentation for more information.
+
+== TortoiseSVN access ==
+
+Use the repository path:
+{{{
+http://spartanframework.googlecode.com/svn/trunk/spartanframework
+}}}
+to obtain the spartanframework and 
+{{{
+http://spartanframework.googlecode.com/svn/trunk/SpartanUtils
+}}}
+to obatin the utils.
