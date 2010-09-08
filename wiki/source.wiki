@@ -2,12 +2,29 @@
 
 = Source =
 
-Add your content here.
+The repository consists in two separate downloads, the spartanframework and the spartanutils.
 
+  * The spartanframework is the source code for the whole framework.
+  * The spartanutils is the source code for a set of utilitaries (forms, actions, states, etc)
 
-= Details =
+== Command-line access ==
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Use this command to anonymously check out the latest project source code:
+
+=== Spartan framework ===
+{{{
+# Non-members may check out a read-only working copy anonymously over HTTP.
+svn checkout http://spartanframework.googlecode.com/svn/trunk/ spartanframework-read-only
+}}}
+
+=== Spartan utils ===
+{{{
+# Non-members may check out a read-only working copy anonymously over HTTP.
+svn checkout http://spartanframework.googlecode.com/svn/trunk/ spartanutils-read-only
+}}}
+
+This project's Subversion repository may be accessed using many different client programs and plug-ins. See your client's documentation for more information.
+
+== TortoiseSVN ==
+
+Use tortoiseSVN whenever you can. Use it like this...
