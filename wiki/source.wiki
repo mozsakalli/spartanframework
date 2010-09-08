@@ -1,5 +1,4 @@
-#summary One-sentence summary of this page.
-
+#summary The repository contains the source code for this project
 = Source =
 
 The repository consists in two separate downloads, the spartanframework and the spartanutils.
@@ -20,11 +19,11 @@ svn checkout http://spartanframework.googlecode.com/svn/trunk/ spartanframework-
 === Spartan utils ===
 {{{
 # Non-members may check out a read-only working copy anonymously over HTTP.
-svn checkout http://spartanframework.googlecode.com/svn/trunk/ spartanutils-read-only
+svn checkout http://spartanframework.googlecode.com/svn/trunk/ SpartanUtils-read-only
 }}}
 
 This project's Subversion repository may be accessed using many different client programs and plug-ins. See your client's documentation for more information.
 
 == TortoiseSVN ==
 
-Use tortoiseSVN whenever you can. Use it like this...
+Use tortoiseSVN whenever you can. In the 
