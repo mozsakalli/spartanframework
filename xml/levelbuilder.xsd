@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.foxholestudios.com/levelbuilder" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:fhs="http://www.foxholestudios.com/levelbuilder">
+
+
+    <complexType name="levelType">
+    	<sequence>
+    		<element name="name" type="string"></element>
+            <element name="renderManager" type="fhs:renderManagerType">
+    		</element>
+    		<element name="collisionManager"
+    			type="fhs:collisionManagerType">
+    		</element>
+            <element name="entities" type="fhs:listEntityType"></element>
+            <element name="actions" type="fhs:listActionType"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="layerType">
+    	<attribute name="priority" type="int" use="required">
+    		<annotation>
+    			<documentation>
+    				the id for the render manager
+    			</documentation>
+    		</annotation>
+    	</attribute>
+    	<attribute name="name" type="string" use="required"></attribute>
+    </complexType>
+
+
+
+    <complexType name="formType">
+    	<sequence>
+    		<element name="attributes" type="fhs:listAttributeType"></element>
+    		<element name="states" type="fhs:listStateType"></element>
+    	</sequence>
+    	<attribute name="x" type="int" use="required"></attribute>
+    	<attribute name="y" type="int" use="required"></attribute>
+    	<attribute name="centerX" type="int"></attribute>
+    	<attribute name="centerY" type="int"></attribute>
+    	<attribute name="class" type="string" use="required"></attribute>
+    </complexType>
+
+
+    <complexType name="stateType">
+    	<sequence>
+    		<element name="attributes" type="fhs:listAttributeType"></element>
+    	</sequence>
+    	<attribute name="id" type="string" use="required"></attribute>
+    	<attribute name="class" type="string" use="required"></attribute>
+    </complexType>
+
+    <complexType name="entityType">
+    	<sequence>
+    		<element name="form" type="fhs:formType"></element>
+    		<element name="states" type="fhs:listStateType"></element>
+    		<element name="actions" type="fhs:listActionType"></element>
+    	</sequence>
+    	<attribute name="name" type="string" use="required"></attribute>
+    </complexType>
+
+    <complexType name="actionType"></complexType>
+
+    <complexType name="attributeType">
+    	<attribute name="name" type="string" use="required"></attribute>
+        <attribute name="type" type="fhs:typeType" use="required"></attribute>
+        <attribute name="locale" type="fhs:localeType" use="optional">
+    		<annotation>
+    			<documentation>
+    				If target exists do:
+
+    				FORM : Obtain form the FORM states, the state name
+    				enclosed in the value of the attribute, inside this
+    				state obtain the name of the
+    			</documentation>
+    		</annotation>
+    	</attribute>
+    </complexType>
+
+
+    <complexType name="listAttributeType">
+    	<sequence minOccurs="1" maxOccurs="unbounded">
+            <element name="attribute" type="fhs:attributeType"></element>
+        </sequence>
+    </complexType>
+
+
+    <complexType name="renderManagerType">
+    	<sequence maxOccurs="unbounded" minOccurs="1">
+    		<element name="render_layer" type="fhs:layerType">
+    			<annotation>
+    				<documentation>
+    					The list of render layers to be initialized
+    				</documentation>
+    			</annotation>
+    		</element>
+    	</sequence>
+    	<attribute name="debug" type="boolean"></attribute>
+    </complexType>
+
+
+    <complexType name="collisionManagerType"></complexType>
+
+    <complexType name="listEntityType">
+    	<sequence maxOccurs="unbounded" minOccurs="1">
+    		<element name="entity" type="fhs:entityType"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="listStateType">
+    	<sequence>
+    		<element name="state" type="fhs:stateType"></element>
+    	</sequence>
+    </complexType>
+
+    <element name="level" type="fhs:levelType"></element>
+
+    <complexType name="listActionType">
+    	<sequence maxOccurs="unbounded" minOccurs="1">
+    		<element name="action" type="fhs:actionType"></element>
+    	</sequence>
+    </complexType>
+
+
+    <simpleType name="localeType">
+    	<restriction base="string">
+    		<enumeration value="form"></enumeration>
+    		<enumeration value="entity"></enumeration>
+    		<enumeration value="system"></enumeration>
+    		<enumeration value="resource"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <simpleType name="typeType">
+    	<restriction base="string">
+    		<enumeration value="integer"></enumeration>
+    		<enumeration value="float"></enumeration>
+    		<enumeration value="string"></enumeration>
+    		<enumeration value="double"></enumeration>
+    		<enumeration value="character"></enumeration>
+    	</restriction>
+    </simpleType>
+</schema>
